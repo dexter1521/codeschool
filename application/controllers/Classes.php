@@ -6,7 +6,7 @@ class Classes extends MY_Controller
 	{
 		parent::__construct();
 
-		//$this->isNotLoggedIn();
+		$this->isNotLoggedIn();
 
 		// loading the classes model
 		$this->load->model('model_classes');		

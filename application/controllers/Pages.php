@@ -4,6 +4,7 @@ class Pages extends MY_Controller
 {
 	public function view($page = 'login')
 	{
+        
         if (!file_exists(APPPATH.'views/'.$page.'.php'))
         {
             // Whoops, we don't have a page for that!
@@ -55,7 +56,7 @@ class Pages extends MY_Controller
             $this->load->view($page, $data);
         } 
         else{
-           // $this->isNotLoggedIn();
+           $this->isNotLoggedIn();
 
             $this->load->view('templates/header', $data);
             $this->load->view($page, $data);    

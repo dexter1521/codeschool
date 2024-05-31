@@ -6,7 +6,7 @@ class Student extends MY_Controller
 	{
 		parent::__construct();
 
-		//$this->isNotLoggedIn();
+		$this->isNotLoggedIn();
 
 		// loading the teacher model
 		$this->load->model('model_student');

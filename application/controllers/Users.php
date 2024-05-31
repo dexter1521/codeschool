@@ -40,6 +40,7 @@ class Users extends MY_Controller
 			$password = md5($this->input->post('password'));
 
 			$login = $this->model_users->login($username, $password);
+			#print_r($login);die();
 
 			if($login) {
 				$this->load->library('session');
@@ -49,6 +50,7 @@ class Users extends MY_Controller
 					'logged_in' => true
 				);
 
+				//print_r($user_data);
 				$this->session->set_userdata($user_data);
 
 				$validator['success'] = true;

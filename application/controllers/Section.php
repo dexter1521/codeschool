@@ -6,7 +6,7 @@ class Section extends MY_Controller
 	{
 		parent::__construct();
 
-		//$this->isNotLoggedIn();
+		$this->isNotLoggedIn();
 
 		// loading the section model
 		$this->load->model('model_section');

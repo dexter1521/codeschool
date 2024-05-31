@@ -45,7 +45,7 @@ class Model_Users extends CI_Model
 			$sql = "SELECT * FROM users WHERE username = ? AND password = ?";
 			$query = $this->db->query($sql, array($username, $password));
 			$result = $query->row_array();
-
+			//echo $this->db->last_query();
 			return ($query->num_rows() === 1 ? $result['user_id'] : false);
 		}
 		else {

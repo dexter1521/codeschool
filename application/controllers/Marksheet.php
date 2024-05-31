@@ -6,7 +6,7 @@ class Marksheet extends MY_Controller
 	{
 		parent::__construct();
 
-		//$this->isNotLoggedIn();
+		$this->isNotLoggedIn();
 
 		// loading the section model class
 		$this->load->model('model_section');
