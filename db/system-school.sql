@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2024 a las 22:02:28
+-- Tiempo de generación: 01-06-2024 a las 00:16:05
 -- Versión del servidor: 10.4.25-MariaDB-log
 -- Versión de PHP: 7.4.30
 
@@ -49,14 +49,6 @@ CREATE TABLE `class` (
   `class_name` varchar(255) NOT NULL,
   `numeric_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `class`
---
-
-INSERT INTO `class` (`class_id`, `class_name`, `numeric_name`) VALUES
-(1, 'HISTORIA UNIVERSAL', '3'),
-(2, 'ESPAÑOL', '5');
 
 -- --------------------------------------------------------
 
@@ -158,6 +150,21 @@ CREATE TABLE `section` (
   `class_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sessions_public`
+--
+
+CREATE TABLE `sessions_public` (
+  `idConsec` int(11) NOT NULL,
+  `id` varchar(128) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `data` blob NOT NULL,
+  `date_add` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -299,6 +306,13 @@ ALTER TABLE `section`
   ADD PRIMARY KEY (`section_id`);
 
 --
+-- Indices de la tabla `sessions_public`
+--
+ALTER TABLE `sessions_public`
+  ADD PRIMARY KEY (`idConsec`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Indices de la tabla `student`
 --
 ALTER TABLE `student`
@@ -336,7 +350,7 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT de la tabla `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `expenses`
@@ -379,6 +393,12 @@ ALTER TABLE `payment_name`
 --
 ALTER TABLE `section`
   MODIFY `section_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `sessions_public`
+--
+ALTER TABLE `sessions_public`
+  MODIFY `idConsec` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `student`
