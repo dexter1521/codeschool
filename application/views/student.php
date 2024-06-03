@@ -7,16 +7,16 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 <div id="request" class="div-hide"><?php echo $this->input->get('opt'); ?></div>
 
 <ol class="breadcrumb">
-    <li><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
+    <li><a>Home</a></li>
     <?php   
   if($this->input->get('opt') == 'addst') {
-    echo '<li class="active">Add Student</li>';
+    echo '<li class="active">Agregar Estudiante</li>';
   } 
   else if ($this->input->get('opt') == 'bulkst') {
-    echo '<li class="active">Add Bulk Student</li>';
+    // echo '<li class="active">Add Bulk Student</li>';
   }
   else if ($this->input->get('opt') == 'mgst') {
-    echo '<li class="active">Manage Student</li>';
+    // echo '<li class="active">Manage Student</li>';
   }
   ?>
 
@@ -28,10 +28,10 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
     <div class="panel-heading">
         <?php   
     if($this->input->get('opt') == 'addst') {
-      echo "Add Student";
+      echo "Agregar Estudiante";
     } 
     else if ($this->input->get('opt') == 'bulkst') {
-      echo "Add Bulk Student";
+    //   echo "Add Bulk Student";
     }
     ?>
 
@@ -47,7 +47,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
             enctype="multipart/form-data">
             <div class="col-md-7">
                 <fieldset>
-                    <legend>Student Info</legend>
+                    <legend>Informacion del Estudiante</legend>
                     <div class="form-group">
                         <label for="nempelado">Numero de empleado</label>
                         <input type="text" class="form-control" id="nempelado" name="nempelado"
@@ -56,7 +56,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 
                     <div class="form-group">
                         <label for="fname">Nombre Completo</label>
-                        <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name"
+                        <input type="text" class="form-control" id="fname" name="fname" placeholder="Nombre completo"
                             autocomplete="off">
                     </div>
 
@@ -87,25 +87,25 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 
                 </fieldset>
 
-                <fieldset>
-                    <legend>Address Info</legend>
+             <!--   <fieldset>
+                    <legend>Informacion de direccion</legend>
 
                     <div class="form-group">
                         <label for="address">Direccion</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="Address"
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Direccion"
                             autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="city">Ciudad</label>
-                        <input type="text" class="form-control" id="city" name="city" placeholder="City"
+                        <input type="text" class="form-control" id="city" name="city" placeholder="Ciudad"
                             autocomplete="off">
-                    </div>
+                    </div> 
                     <div class="form-group">
                         <label for="country">Pais</label>
                         <input type="text" class="form-control" id="country" name="country" placeholder="Country"
                             autocomplete="off">
                     </div>
-                </fieldset>
+                </fieldset> -->
 
             </div>
             <!-- /col-md-6 -->
@@ -124,7 +124,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
                     <div class="form-group">
                         <label for="className">Area de adscripción</label>
                         <select class="form-control" name="className" id="className">
-                            <option value="">Select</option>
+                            <option value="">Selecciona</option>
                             <?php foreach ($classData1 as $key => $value) { ?>
                             <option value="<?php echo $value['id_assignment'] ?>"><?php echo $value['assignment_area'] ?></option>
                             <?php } // /forwach ?>

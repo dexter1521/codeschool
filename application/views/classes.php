@@ -1,5 +1,7 @@
 <ol class="breadcrumb">
-  <li><a href="<?php echo base_url('dashboard') ?>">Home</a></li> 
+  <li><a href="">Home</a></li> 
+  <!-- <li><a href="<?php echo base_url('dashboard') ?>">Home</a></li>  -->
+
   <li class="active">Administrar Clase</li>
 </ol>
 
@@ -50,13 +52,13 @@
 		  <div class="form-group">
 		    <label for="className" class="col-sm-4 control-label">Nombre de clase : </label>
 		    <div class="col-sm-8">
-		      <input type="text" class="form-control" id="className" name="className" placeholder="Class Name">
+		      <input type="text" class="form-control" id="className" name="className" placeholder="Nombre de clase">
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="numericName" class="col-sm-4 control-label">Nombre numerico : </label>
 		    <div class="col-sm-8">
-		      <input type="text" class="form-control" id="numericName" name="numericName" placeholder="Numeric Name">
+		      <input type="text" class="form-control" id="numericName" name="numericName" placeholder="Nombre numerico">
 		    </div>
 		  </div>		  
       </div>

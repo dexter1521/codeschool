@@ -48,13 +48,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo base_url('dashboard') ?>">EJ</a>
+                <a class="navbar-brand" href="">EJ</a>
+
+                <!-- <a class="navbar-brand" href="<?php echo base_url('dashboard') ?>">EJ</a> -->
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li id="topNavDashboard"><a href="<?php echo base_url('dashboard') ?>"> <i
+                <li id="topNavDashboard"><a> 
+
+                   <!-- <li id="topNavDashboard"><a href="<?php echo base_url('dashboard') ?>"> -->
+                    <i
                                 class="glyphicon glyphicon-dashboard"></i> Menu Principal <span
                                 class="sr-only">(current)</span></a></li>
                     <!-- <li><a href="#">Class</a></li> -->
@@ -64,7 +69,7 @@
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li id="topNavClass"><a href="<?php echo base_url('classes'); ?>">Administrar clase</a></li>
-                            <li id="topNavSection"><a href="<?php echo base_url('section') ?>">Administrar Sección</a>
+                            <li id="topNavSection"><a href="<?php echo base_url('section') ?>">Administrar Sección</a> 
                             </li>
 <!--
                             <li id="topNavSubject"><a href="<?php echo base_url('subject') ?>">Administrar Subclase</a>
@@ -79,10 +84,10 @@
                         <ul class="dropdown-menu">
                             <li id="addStudentNav"><a href="<?php echo base_url('student?opt=addst') ?>">Agregar
                                     Estudiantes</a></li>
-                            <li id="addBulkStudentNav"><a href="<?php echo base_url('student?opt=bulkst') ?>">Agregar
-                                    Estudiantes en masa</a></li>
+                         <!--   <li id="addBulkStudentNav"><a href="<?php echo base_url('student?opt=bulkst') ?>">Agregar
+                                    Estudiantes en masa</a></li> 
                             <li id="manageStudentNav"><a href="<?php echo base_url('student?opt=mgst') ?>">Administrar
-                                    Estudiantes</a></li>
+                                    Estudiantes</a></li> -->
                         </ul>
                     </li>
 <!--
@@ -97,8 +102,8 @@
                         <ul class="dropdown-menu">
                             <li id="takeAttendNav"><a href="<?php echo base_url('Asistencia') ?>">Tomar
                                     Asistencia</a></li>
-                            <li id="attenReport"><a href="<?php echo base_url('attendance?atd=report') ?>">Reporte de
-                                    Asistencia</a></li>
+                           <!-- <li id="attenReport"><a href="<?php echo base_url('attendance?atd=report') ?>">Reporte de
+                                    Asistencia</a></li> -->
                         </ul>
                     </li>
 
