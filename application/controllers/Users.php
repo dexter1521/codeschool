@@ -54,7 +54,7 @@ class Users extends MY_Controller
 				$this->session->set_userdata($user_data);
 
 				$validator['success'] = true;
-				$validator['messages'] = "index.php/dashboard";				
+				$validator['messages'] = "index.php/classes";				
 			}	
 			else {
 				$validator['success'] = false;

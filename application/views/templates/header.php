@@ -156,7 +156,9 @@
                                 aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i>
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url('setting') ?>">Ajustes</a></li>
+                                <!-- <li><a href="<?php echo base_url('setting') ?>">Ajustes</a></li> -->
+                                <li><a href="">Ajustes</a></li>
+
                                 <li><a href="<?php echo base_url('users/logout'); ?>">Logout</a></li>
                             </ul>
                         </li>

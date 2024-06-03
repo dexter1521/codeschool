@@ -63,7 +63,7 @@ class Section extends MY_Controller
 							    Action <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu">
-							    <li><a type="button" data-toggle="modal" data-target="#editSectionModal" onclick="editSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> Ediatr</a></li>
+							    <li><a type="button" data-toggle="modal" data-target="#editSectionModal" onclick="editSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
 							    <li><a type="button" data-toggle="modal" data-target="#removeSectionModal" onclick="removeSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
 							  </ul>
 							</div>';
