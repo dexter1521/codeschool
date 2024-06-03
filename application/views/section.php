@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-    <li><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
+    <li><a href="">Home</a></li>
     <li class="active">Administrar secciones</li>
 </ol>
 
