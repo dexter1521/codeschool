@@ -44,10 +44,15 @@ class Model_Section extends CI_Model
 	*/
 	public function create($classId = null)
 	{
+		// var_dump($_POST); die();
 		if($classId) {
 			$insert_data = array(
 				'section_name' => $this->input->post('sectionName'),
 				'class_id' 	   => $classId,
+				'fecha_inicio' => $this->input->post('FI'),
+				'fecha_fin' => $this->input->post('FF'),
+				'hora_inicio' => $this->input->post('HI'),
+				'hora_fin' => $this->input->post('HF')
 				// 'teacher_id'   => $this->input->post('teacherName')
 			);
 
