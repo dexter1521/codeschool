@@ -23,6 +23,7 @@ class model_asistencia extends CI_Model
 			'id_section' => $sectionID,
 			'id_tipoAsistencia' =>$tipoAsistencia,
 		);
+		
 		$status = $this->db->insert('aistencias', $insert_asistencia);
 		return ($status === true ? true : false);
 	}

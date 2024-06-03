@@ -17,9 +17,9 @@
     <!-- fullcalendar css -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/fullcalendar/fullcalendar.min.css') ?>">
 
-       <!-- Flatpickr CSS -->
-       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <!-- keith calendar css -->
     <link rel="stylesheet" type="text/css"
@@ -66,8 +66,10 @@
                             <li id="topNavClass"><a href="<?php echo base_url('classes'); ?>">Administrar clase</a></li>
                             <li id="topNavSection"><a href="<?php echo base_url('section') ?>">Administrar Sección</a>
                             </li>
+<!--
                             <li id="topNavSubject"><a href="<?php echo base_url('subject') ?>">Administrar Subclase</a>
                             </li>
+-->
                         </ul>
                     </li>
                     <li class="dropdown" id="topStudentMainNav">
@@ -83,8 +85,10 @@
                                     Estudiantes</a></li>
                         </ul>
                     </li>
+<!--
                     <li id="topNavTeacher"><a href="<?php echo base_url('teacher') ?>"> <i
                                 class="glyphicon glyphicon-briefcase"></i> Maestro</a></li>
+-->
 
                     <li class="dropdown" id="topAttendanceMainNav">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -98,7 +102,7 @@
                         </ul>
                     </li>
 
-                <!--      <li class="dropdown" id="topAttendanceMainNav">
+                    <!--      <li class="dropdown" id="topAttendanceMainNav">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false"> <i class="glyphicon glyphicon-time"></i> Asistencia <span
                                 class="caret"></span></a>
@@ -112,7 +116,7 @@
 
 
 
-                 <!--   <li class="dropdown" id="topMarksheetMainNav" hidden>
+                    <!--   <li class="dropdown" id="topMarksheetMainNav" hidden>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">
                             <i class="glyphicon glyphicon-duplicate"></i> Hojas de Marcas <span class="caret"></span>
@@ -126,7 +130,7 @@
                     </li> -->
 
 
-                   <!-- <li class="dropdown" id="topAccountMainNav">
+                    <!-- <li class="dropdown" id="topAccountMainNav">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false"> <i class="glyphicon glyphicon-indent-left"></i> Accounting <span
                                 class="caret"></span></a>
@@ -141,17 +145,17 @@
                     </li>
                 </ul> -->
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false"> <i class="glyphicon glyphicon-user"></i> <span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url('setting') ?>">Ajustes</a></li>
-                            <li><a href="<?php echo base_url('users/logout'); ?>">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i>
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo base_url('setting') ?>">Ajustes</a></li>
+                                <li><a href="<?php echo base_url('users/logout'); ?>">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>

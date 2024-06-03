@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
     <li><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
-    <li class="active">Manage Section</li>
+    <li class="active">Administrar secciones</li>
 </ol>
 
 <div class="row">
@@ -8,7 +8,7 @@
         <div class="panel panel-default">
 
             <div class="panel-heading">
-                Class
+                Clase
             </div>
 
             <div class="list-group">
@@ -41,7 +41,7 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Manage Section</div>
+            <div class="panel-heading">Administrar secciones</div>
 
             <div class="panel-body">
                 <div class="result"></div>
@@ -59,7 +59,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Add Section</h4>
+                <h4 class="modal-title">Añadir seccion</h4>
             </div>
             <form action="<?php echo base_url('section/create') ?>" method="post" id="addSectionForm">
                 <div class="modal-body">
@@ -85,13 +85,13 @@
 
                     <div class="form-group">
                         <label for="HI">Hora de inicio</label>
-                        <input type="text" class="form-control" id="HI" name="HI" placeholder="Hora de inicio"
+                        <input type="time" class="form-control" id="HI" name="HI" placeholder="Hora de inicio"
                             autocomplete="off">
                     </div>
 
                     <div class="form-group">
                         <label for="HF">Hora de fin</label>
-                        <input type="text" class="form-control" id="HF" name="HF" placeholder="Hora de fin"
+                        <input type="time" class="form-control" id="HF" name="HF" placeholder="Hora de fin"
                             autocomplete="off">
                     </div>
 
@@ -123,8 +123,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
 
             </form>

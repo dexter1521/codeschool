@@ -33,13 +33,13 @@ class Section extends MY_Controller
 			$table = '
 
 			<div class="well">
-				Class Name : '.$classData['class_name'].'
+				Nombre de la clase : '.$classData['class_name'].'
 			</div>
 
 			<div id="messages"></div>
 
 			<div class="pull pull-right">
-	  			<button class="btn btn-default" data-toggle="modal" data-target="#addSectionModal" onclick="addSection('.$classId.')">Add Section</button>	
+	  			<button class="btn btn-default" data-toggle="modal" data-target="#addSectionModal" onclick="addSection('.$classId.')">Agregar seccion</button>	
 		  	</div>
 		  		
 		  	<br /> <br />
@@ -48,9 +48,8 @@ class Section extends MY_Controller
 		  	<table class="table table-bordered" id="manageSectionTable">
 			    <thead>	
 			    	<tr>
-			    		<th> Section Name </th>
-			    		<th> Teacher Name  </th>
-			    		<th> Action </th>
+			    		<th> Nombre de la seccion </th>
+			    		<th> Acciones </th>
 			    	</tr>
 			    </thead>
 			    <tbody>';
@@ -64,14 +63,13 @@ class Section extends MY_Controller
 							    Action <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu">
-							    <li><a type="button" data-toggle="modal" data-target="#editSectionModal" onclick="editSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
-							    <li><a type="button" data-toggle="modal" data-target="#removeSectionModal" onclick="removeSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>		    
+							    <li><a type="button" data-toggle="modal" data-target="#editSectionModal" onclick="editSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> Ediatr</a></li>
+							    <li><a type="button" data-toggle="modal" data-target="#removeSectionModal" onclick="removeSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
 							  </ul>
 							</div>';
 
 				    		$table .= '<tr>
 				    			<td>'.$value['section_name'].'</td>
-				    			<td>'.$teacherData['fname'].' '.$teacherData['lname'].'</td>
 				    			<td>'.$button.'</td>
 				    		</tr>
 				    		';
@@ -211,7 +209,6 @@ class Section extends MY_Controller
 			$table = '<thead>	
 			    	<tr>
 			    		<th> Section Name </th>
-			    		<th> Teacher Name  </th>
 			    		<th> Action </th>
 			    	</tr>
 			    </thead>
@@ -219,21 +216,20 @@ class Section extends MY_Controller
 			    	if($sectionData) {
 			    		foreach ($sectionData as $key => $value) {
 
-			    			$teacherData = $this->model_teacher->fetchTeacherData($value['teacher_id']);
+			    			// $teacherData = $this->model_teacher->fetchTeacherData($value['teacher_id']);
 
 			    			$button = '<div class="btn-group">
 							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							    Action <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu">
-							    <li><a type="button" data-toggle="modal" data-target="#editSectionModal" onclick="editSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
-							    <li><a type="button" data-toggle="modal" data-target="#removeSectionModal" onclick="removeSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>		    
+							    <li><a type="button" data-toggle="modal" data-target="#editSectionModal" onclick="editSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> editar</a></li>
+							    <li><a type="button" data-toggle="modal" data-target="#removeSectionModal" onclick="removeSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-trash"></i> eliminar</a></li>		    
 							  </ul>
 							</div>';
 
 				    		$table .= '<tr>
 				    			<td>'.$value['section_name'].'</td>
-				    			<td>'.$teacherData['fname'].' '.$teacherData['lname'].'</td>
 				    			<td>'.$button.'</td>
 				    		</tr>
 				    		';

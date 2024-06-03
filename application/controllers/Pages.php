@@ -21,8 +21,8 @@ class Pages extends MY_Controller
             $data['classData1'] = $this->model_student->fetchClassData();
 
 
-            $this->load->model('model_teacher');
-            $data['teacherData'] = $this->model_teacher->fetchTeacherData();
+            // $this->load->model('model_teacher');
+            // $data['teacherData'] = $this->model_teacher->fetchTeacherData();
 
             
             $this->load->model('model_accounting');
