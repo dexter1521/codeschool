@@ -517,4 +517,10 @@ else if($this->input->get('opt') == 'mgst') { ?>
 
 
 
-<script type="text/javascript" src="<?php echo base_url('custom/js/student.js') ?>"></script>
+<!-- <script type="text/javascript" src="<?php echo base_url('custom/js/student.js') ?>">
+
+</script> -->
+
+<script>
+    
+</script>

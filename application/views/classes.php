@@ -1,18 +1,18 @@
 <ol class="breadcrumb">
   <li><a href="<?php echo base_url('dashboard') ?>">Home</a></li> 
-  <li class="active">Manage Class</li>
+  <li class="active">Administrar Clase</li>
 </ol>
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    Manage Class
+    Administrar clase
   </div>
   <div class="panel-body">  	    
       <div id="messages"></div>
 
     	<div class="pull pull-right">
     		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addClass" id="addClassModelBtn"> 
-    			<i class="glyphicon glyphicon-plus-sign"></i> Add Class
+    			<i class="glyphicon glyphicon-plus-sign"></i> Agregar Clase
     		</button>
     	</div>
 
@@ -22,9 +22,9 @@
     		<thead>
     			<tr>
     				<th>#</th>
-    				<th>Class Name</th>
-    				<th>Numeric Name</th>
-    				<th>Action</th>
+    				<th>Nombre de clase</th>
+    				<th>Nombre numerico</th>
+    				<th>Accion</th>
     			</tr>
     		</thead>
     	</table>	
@@ -38,7 +38,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Add Class</h4>
+        <h4 class="modal-title">Agregar clase</h4>
       </div>
 
       <form class="form-horizontal" method="post" id="createClassForm" action="<?php echo base_url() . 'classes/create' ?>">
@@ -48,21 +48,21 @@
       <div id="add-class-messages"></div>
 
 		  <div class="form-group">
-		    <label for="className" class="col-sm-4 control-label">Class Name : </label>
+		    <label for="className" class="col-sm-4 control-label">Nombre de clase : </label>
 		    <div class="col-sm-8">
 		      <input type="text" class="form-control" id="className" name="className" placeholder="Class Name">
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="numericName" class="col-sm-4 control-label">Numeric Name : </label>
+		    <label for="numericName" class="col-sm-4 control-label">Nombre numerico : </label>
 		    <div class="col-sm-8">
 		      <input type="text" class="form-control" id="numericName" name="numericName" placeholder="Numeric Name">
 		    </div>
 		  </div>		  
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
       </div>
       </form>
     </div><!-- /.modal-content -->
@@ -75,7 +75,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Edit Class</h4>
+        <h4 class="modal-title">Editar clase</h4>
       </div>
 
       <form class="form-horizontal" method="post" id="editClassForm" action="<?php echo base_url() . 'classes/update'; ?>">
@@ -85,21 +85,21 @@
       <div id="edit-class-messages"></div>
 
       <div class="form-group">
-        <label for="editClassName" class="col-sm-4 control-label">Class Name : </label>
+        <label for="editClassName" class="col-sm-4 control-label">Nombre de clase : </label>
         <div class="col-sm-8">
           <input type="text" class="form-control" id="editClassName" name="editClassName" placeholder="Class Name">
         </div>
       </div>
       <div class="form-group">
-        <label for="editNumericName" class="col-sm-4 control-label">Numeric Name : </label>
+        <label for="editNumericName" class="col-sm-4 control-label">Nombre numerico : </label>
         <div class="col-sm-8">
           <input type="text" class="form-control" id="editNumericName" name="editNumericName" placeholder="Numeric Name">
         </div>
       </div>      
       </div>
       <div class="modal-footer edit-class-modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
       </div>
       </form>
     </div><!-- /.modal-content -->
@@ -112,16 +112,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Remove Class</h4>
+        <h4 class="modal-title">Eliminar clase</h4>
       </div>
       
       <div class="modal-body">
         <div id="remove-messages"></div>
-        <p> Do you really want to remove</p>    
+        <p> Seguro que deseas eliminar?</p>    
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" id="removeClassBtn">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" id="removeClassBtn">Guardar cambios</button>
       </div>
       </form>
     </div><!-- /.modal-content -->

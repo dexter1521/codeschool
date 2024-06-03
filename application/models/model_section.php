@@ -48,7 +48,7 @@ class Model_Section extends CI_Model
 			$insert_data = array(
 				'section_name' => $this->input->post('sectionName'),
 				'class_id' 	   => $classId,
-				'teacher_id'   => $this->input->post('teacherName')
+				// 'teacher_id'   => $this->input->post('teacherName')
 			);
 
 			$query = $this->db->insert('section', $insert_data);

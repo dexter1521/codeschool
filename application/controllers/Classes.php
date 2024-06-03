@@ -47,11 +47,11 @@ class Classes extends MY_Controller
 			$create = $this->model_classes->create();					
 			if($create === true) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully added";
+				$validator['messages'] = "Exito al registrar";
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = "Error while inserting the information into the database";
+				$validator['messages'] = "Error insertando en la base de datos";
 			}			
 		} 	
 		else {
@@ -77,7 +77,7 @@ class Classes extends MY_Controller
 		$validate = $this->model_classes->validate_classname();
 
 		if($validate === true) {
-			$this->form_validation->set_message('validate_classname', 'The {field} already exists');
+			$this->form_validation->set_message('validate_classname', 'El {field} ya existe');
 			return false;						
 		}
 		else {

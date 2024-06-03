@@ -59,6 +59,7 @@ class Model_Classes extends CI_Model
 	{
 		if($classId) {
 			$sql = "SELECT * FROM class WHERE class_id = ?";
+			// $sql = "SELECT * FROM cat_assignment_area WHERE id_assignment = ?";
 			$query = $this->db->query($sql, array($classId));
 			return $query->row_array();
 		} 
@@ -69,6 +70,7 @@ class Model_Classes extends CI_Model
 		}
 	}
 
+	
 	/*
 	*-----------------------------------------
 	* validate the class name

@@ -119,12 +119,12 @@ class Section extends MY_Controller
 				'field' => 'sectionName',
 				'label' => 'Section Name',
 				'rules' => 'required'
-			),
-			array(
-				'field' => 'teacherName',
-				'label' => 'Teacher Name',
-				'rules' => 'required'
 			)
+			// array(
+			// 	'field' => 'teacherName',
+			// 	'label' => 'Teacher Name',
+			// 	'rules' => 'required'
+			// )
 		);
 
 		$this->form_validation->set_rules($validate_data);

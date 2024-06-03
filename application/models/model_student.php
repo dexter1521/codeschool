@@ -21,10 +21,11 @@ class Model_Student extends CI_Model
 
 		$insert_data = array(
 			'register_date' => $this->input->post('registerDate'),
+			'no_empleado' => $this->input->post('nempelado'),
 			'class_id' 		=> $this->input->post('className'),
 			'section_id'	=> $this->input->post('sectionName'),
 			'fname'			=> $this->input->post('fname'),
-			'lname' 		=> $this->input->post('lname'),
+			// 'lname' 		=> $this->input->post('lname'),
 			'image'			=> $img_url,
 			'age'			=> $this->input->post('age'),
 			'dob'			=> $this->input->post('dob'),
@@ -46,11 +47,17 @@ class Model_Student extends CI_Model
 	*/
 	public function fetchStudentData($studentId = null)
 	{
-		if($studentId) {
-			$sql = "SELECT * FROM student WHERE student_id = ?";
-			$query = $this->db->query($sql, array($studentId));
+		if($classId) {
+			// $sql = "SELECT * FROM class WHERE class_id = ?";
+			$sql = "SELECT * FROM cat_assignment_area WHERE id_assignment = ?";
+			$query = $this->db->query($sql, array($classId));
 			return $query->row_array();
-		}		
+		} 
+		else {
+			$sql = "SELECT * FROM cat_assignment_area";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+		}	
 	}
 
 	/*
@@ -75,7 +82,8 @@ class Model_Student extends CI_Model
 	public function fetchStudentByClassAndSection($classId = null, $sectionId = null)
 	{
 		if($classId && $sectionId) {
-			$sql = "SELECT * FROM student WHERE class_id = ? AND section_id = ?";
+			// $sql = "SELECT * FROM cat_assignment_area WHERE id_assignment = ? AND section_id = ?";
+			$sql = "SELECT * FROM cat_assignment_area WHERE id_assignment = ?";
 			$query = $this->db->query($sql, array($classId, $sectionId));
 			return $query->result_array();
 		} // /if
@@ -92,11 +100,11 @@ class Model_Student extends CI_Model
 			$update_data = array(
 				'register_date' => $this->input->post('editRegisterDate'),
 				'class_id' 		=> $this->input->post('editClassName'),
-				'section_id'	=> $this->input->post('editSectionName'),
+				// 'section_id'	=> $this->input->post('editSectionName'),
 				'fname'			=> $this->input->post('editFname'),
-				'lname' 		=> $this->input->post('editLname'),				
-				'age'			=> $this->input->post('editAge'),
-				'dob'			=> $this->input->post('editDob'),
+				// 'lname' 		=> $this->input->post('editLname'),				
+				// 'age'			=> $this->input->post('editAge'),
+				// 'dob'			=> $this->input->post('editDob'),
 				'contact'		=> $this->input->post('editContact'),
 				'email'			=> $this->input->post('editEmail'),
 				'address'		=> $this->input->post('editAddress'),

@@ -31,6 +31,11 @@ class Student extends MY_Controller
 
 		$validate_data = array(
 			array(
+				'field' => 'nempelado',
+				'label' => 'Numero de empleado',
+				'rules' => 'required'
+			),
+			array(
 				'field' => 'fname',
 				'label' => 'First Name',
 				'rules' => 'required'
@@ -159,7 +164,7 @@ class Student extends MY_Controller
 	{
 		if($classId) {
 			$sectionData = $this->model_section->fetchSectionDataByClass($classId);	
-			$classData = $this->model_classes->fetchClassData($classId);									
+			$classData = $this->model_classes->model_classes($classId);	/////////////								
 			$tab = array();			
 			$tab['sectionData'] = $sectionData;			
 
