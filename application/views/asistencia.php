@@ -1,12 +1,13 @@
 <body>
     <div class="container">
+    <input type="text" value="<?php echo(base_url()) ?>" id='base_url' name= 'base_url'hidden>
 
         <div class="form-group">
             <label for="className">Selecciona la clase</label>
             <select class="form-control" name="className" id="className">
                 <option value="">Selecciona una clase</option>
-                <?php  foreach ($data as $key => $value) { ?>
-                <option value="<?php echo $key['class_id'] ?>"><?php echo $key['class_name'] ?></option>
+                <?php  foreach ($classData as $key => $value) { ?>
+                <option value="<?php echo $value['class_id'] ?>"><?php echo $value['class_name'] ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -40,6 +41,8 @@ function updateClock() {
 }
 
 $(document).ready(function() {
+    var base_url = $("#base_url").val();
+
     // Actualizar el reloj cada segundo
     setInterval(updateClock, 1000);
     updateClock(); // Llama inmediatamente para que el reloj se muestre sin esperar 1 segundo
@@ -55,12 +58,18 @@ $(document).ready(function() {
     //cambia el contenido del select seccion al cambiar el contenido del select clase
     $("#className").unbind('change').bind('change', function() {
         var class_id = $(this).val();
+        // console.log( <?php echo(base_url()) ?> + 'student/fetchClassSection/' + class_id);
+
+        // console.log( <?php echo(base_url()) ?> + 'student/fetchClassSection/' + class_id);
         $("#sectionName").load(base_url + 'student/fetchClassSection/' + class_id);
     });
 
     // Manejar el evento change en el campo de entrada
     $('#barcode').change(function() {
         var barcode = $(this).val();
+        var className = $('#className').val();
+        var sectionName = $('#sectionName').val();
+
         // Limpiar el campo después de leer el código
         $(this).val('');
 
@@ -69,7 +78,11 @@ $(document).ready(function() {
             url: 'Asistencia/create', // Asegúrate de que esta URL apunte a tu controlador de CodeIgniter
             method: 'POST',
             data: {
-                code: barcode
+                code: barcode,
+                // code: className,
+                sectionID: sectionName
+
+
             },
             success: function(response) {
                 // Maneja la respuesta del servidor

@@ -14,6 +14,7 @@ class model_asistencia extends CI_Model
 	*/
 	public function create_asistencia()
 	{	
+		// var_dump($_POST); die();
 		$sectionID = $this->input->post('sectionID');
 		$tipoAsistencia = $this->checkSectionHour($sectionID);
 
@@ -52,8 +53,10 @@ class model_asistencia extends CI_Model
 		$this->db->where('section_id', $sectionID);
 		$this->db->from('section');
 		$query = $this->db->get()->row_array();
+		// var_dump($query); die();
 
 		$sectionHour = strtotime($query['hora_inicio']);
+
 		$differenceInSeconds = $actualHour - $sectionHour;//max 15 min despues de la hora registrada
 		if($actualHour >= $sectionHour){
 			$tipoAsistencia = 1;

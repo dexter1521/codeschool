@@ -13,9 +13,13 @@ class Pages extends MY_Controller
 
         $data['title'] = ucfirst($page); // Capitalize the first letter
 
-        if($page == 'section' || $page == 'subject' || $page == 'student' || $page == 'marksheet' || $page == 'accounting') {
+        if($page == 'section' || $page == 'subject' || $page == 'student' || $page == 'marksheet' || $page == 'accounting' || $page == 'Asistencia') {
             $this->load->model('model_classes');
+            $this->load->model('model_student');
+
             $data['classData'] = $this->model_classes->fetchClassData();
+            $data['classData1'] = $this->model_student->fetchClassData();
+
 
             $this->load->model('model_teacher');
             $data['teacherData'] = $this->model_teacher->fetchTeacherData();
@@ -57,7 +61,7 @@ class Pages extends MY_Controller
         } 
         else{
            $this->isNotLoggedIn();
-
+        
             $this->load->view('templates/header', $data);
             $this->load->view($page, $data);    
             $this->load->view('templates/footer', $data);    

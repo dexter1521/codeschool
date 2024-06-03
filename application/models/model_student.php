@@ -20,21 +20,22 @@ class Model_Student extends CI_Model
 		} 
 
 		$insert_data = array(
-			'register_date' => $this->input->post('registerDate'),
+			// 'register_date' => $this->input->post('registerDate'),
 			'no_empleado' => $this->input->post('nempelado'),
 			'class_id' 		=> $this->input->post('className'),
-			'section_id'	=> $this->input->post('sectionName'),
+			// 'section_id'	=> $this->input->post('sectionName'),
 			'fname'			=> $this->input->post('fname'),
 			// 'lname' 		=> $this->input->post('lname'),
 			'image'			=> $img_url,
-			'age'			=> $this->input->post('age'),
-			'dob'			=> $this->input->post('dob'),
+			// 'age'			=> $this->input->post('age'),
+			// 'dob'			=> $this->input->post('dob'),
 			'contact'		=> $this->input->post('contact'),
 			'email'			=> $this->input->post('email'),
 			'address'		=> $this->input->post('address'),
 			'city'			=> $this->input->post('city'),
 			'country'   	=> $this->input->post('country')
 		);
+		// var_dump($insert_data); die();
 
 		$status = $this->db->insert('student', $insert_data);		
 		return ($status == true ? true : false);
@@ -58,6 +59,21 @@ class Model_Student extends CI_Model
 			$query = $this->db->query($sql);
 			return $query->result_array();
 		}	
+	}
+
+	public function fetchClassData($classId = null)
+	{
+		if($classId) {
+			$sql = "SELECT * FROM cat_assignment_area WHERE id_assignment = ?";
+			// $sql = "SELECT * FROM cat_assignment_area WHERE id_assignment = ?";
+			$query = $this->db->query($sql, array($classId));
+			return $query->row_array();
+		} 
+		else {
+			$sql = "SELECT * FROM cat_assignment_area";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+		}
 	}
 
 	/*

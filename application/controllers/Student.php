@@ -27,6 +27,7 @@ class Student extends MY_Controller
 	*/
 	public function create()
 	{
+		// var_dump($_POST); die();
 		$validator = array('success' => false, 'messages' => array());
 
 		$validate_data = array(
@@ -40,11 +41,7 @@ class Student extends MY_Controller
 				'label' => 'First Name',
 				'rules' => 'required'
 			),
-			array(
-				'field' => 'age',
-				'label' => 'Age',
-				'rules' => 'required'
-			),			
+						
 			array(
 				'field' => 'contact',
 				'label' => 'Contact',
@@ -55,21 +52,13 @@ class Student extends MY_Controller
 				'label' => 'Email',
 				'rules' => 'required'
 			),
-			array(
-				'field' => 'registerDate',
-				'label' => 'Register Date',
-				'rules' => 'required'
-			),
+			
 			array(
 				'field' => 'className',
 				'label' => 'Class',
 				'rules' => 'required'
 			),
-			array(
-				'field' => 'sectionName',
-				'label' => 'Section',
-				'rules' => 'required'
-			)
+			
 		);
 
 		$this->form_validation->set_rules($validate_data);
@@ -164,7 +153,7 @@ class Student extends MY_Controller
 	{
 		if($classId) {
 			$sectionData = $this->model_section->fetchSectionDataByClass($classId);	
-			$classData = $this->model_classes->model_classes($classId);	/////////////								
+			$classData = $this->model_student->fetchStudentData($classId);	/////////////								
 			$tab = array();			
 			$tab['sectionData'] = $sectionData;			
 

@@ -15,10 +15,10 @@ class Asistencia extends MY_Controller
 		$this->load->library('form_validation');	
 	}
 
-	public function index(){
-		$data['classData'] = $this->model_asistencia->clases();	
-		$this->load->view('asistencia', $data);
-	}
+	// public function index(){
+	// 	$data['classData'] = $this->model_asistencia->clases();	
+	// 	$this->load->view('asistencia', $data);
+	// }
 
 	/*
 	*-----------------------------------------
