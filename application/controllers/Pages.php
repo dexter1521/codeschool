@@ -61,7 +61,6 @@ class Pages extends MY_Controller
         } 
         else{
            $this->isNotLoggedIn();
-        
             $this->load->view('templates/header', $data);
             $this->load->view($page, $data);    
             $this->load->view('templates/footer', $data);    

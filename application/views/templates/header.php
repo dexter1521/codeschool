@@ -84,10 +84,10 @@
                         <ul class="dropdown-menu">
                             <li id="addStudentNav"><a href="<?php echo base_url('student?opt=addst') ?>">Agregar
                                     Estudiantes</a></li>
-                         <!--   <li id="addBulkStudentNav"><a href="<?php echo base_url('student?opt=bulkst') ?>">Agregar
-                                    Estudiantes en masa</a></li> 
+                         <li id="addBulkStudentNav"><a href="<?php echo base_url('student?opt=bulkst') ?>">Agregar
+                                    Estudiantes en masa</a></li>
                             <li id="manageStudentNav"><a href="<?php echo base_url('student?opt=mgst') ?>">Administrar
-                                    Estudiantes</a></li> -->
+                                    Estudiantes</a></li> 
                         </ul>
                     </li>
 <!--

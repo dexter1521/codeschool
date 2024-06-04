@@ -20,20 +20,12 @@ class Model_Student extends CI_Model
 		} 
 
 		$insert_data = array(
-			// 'register_date' => $this->input->post('registerDate'),
 			'no_empleado' => $this->input->post('nempelado'),
 			'class_id' 		=> $this->input->post('className'),
-			// 'section_id'	=> $this->input->post('sectionName'),
 			'fname'			=> $this->input->post('fname'),
-			// 'lname' 		=> $this->input->post('lname'),
 			'image'			=> $img_url,
-			// 'age'			=> $this->input->post('age'),
-			// 'dob'			=> $this->input->post('dob'),
 			'contact'		=> $this->input->post('contact'),
 			'email'			=> $this->input->post('email'),
-			'address'		=> $this->input->post('address'),
-			'city'			=> $this->input->post('city'),
-			'country'   	=> $this->input->post('country')
 		);
 		// var_dump($insert_data); die();
 
@@ -200,5 +192,60 @@ class Model_Student extends CI_Model
 		$sql = "SELECT * FROM student";
 		$query = $this->db->query($sql);
 		return $query->num_rows();
+	}
+
+
+	public function insert_csv($file_path) {
+        $handle = fopen($file_path, "r");
+        if ($handle !== FALSE) {
+            $header = fgetcsv($handle, 1000, ",");
+            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                $csv_data = array(
+                    'no_empleado' => $data[0],
+                    'class_id' => $data[1],
+                    'fname' => $data[2],
+					'contact' => $data[3],
+					'email' => $data[4],
+					
+					
+                    // Agrega más columnas según tu necesidad
+                );
+                $this->db->insert('student', $csv_data);
+            }
+            fclose($handle);
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+	public function createStudend($data)
+	{
+		$status = $this->db->insert('student', $data);		
+		return ($status == true ? true : false);
+	}
+
+	public function idAssinment($idAssingment){
+		$this->db->select('id_assignment');
+		$this->db->where('assignment_area', $idAssingment);
+		$query = $this->db->get('cat_assignment_area');
+		if ($query->num_rows() > 0) {
+            return $query->row()->id_assignment;
+        } else {
+            // Si no se encuentra ningún resultado, retorna null
+            return null;
+        }
+	}
+
+	public function createAssigment($data)
+	{
+		$status = $this->db->insert('cat_assignment_area', $data);
+		$idAssingment = $this->db->insert_id();
+		$status == true ? true : false;
+		return array(
+			'status' => $status,
+			'idAssingment' => $idAssingment
+		);
+
 	}
 }

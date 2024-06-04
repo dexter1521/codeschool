@@ -7,6 +7,8 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 <div id="request" class="div-hide"><?php echo $this->input->get('opt'); ?></div>
 
 <ol class="breadcrumb">
+    <input type="text" value="<?php echo(base_url()) ?>" id='base_url' name='base_url' hidden>
+
     <li><a>Home</a></li>
     <?php   
   if($this->input->get('opt') == 'addst') {
@@ -21,6 +23,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
   ?>
 
 </ol>
+
 
 <?php if($this->input->get('opt') == 'addst' || $this->input->get('opt') == 'bulkst') { ?>
 
@@ -87,7 +90,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 
                 </fieldset>
 
-             <!--   <fieldset>
+                <!--   <fieldset>
                     <legend>Informacion de direccion</legend>
 
                     <div class="form-group">
@@ -126,7 +129,8 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
                         <select class="form-control" name="className" id="className">
                             <option value="">Selecciona</option>
                             <?php foreach ($classData1 as $key => $value) { ?>
-                            <option value="<?php echo $value['id_assignment'] ?>"><?php echo $value['assignment_area'] ?></option>
+                            <option value="<?php echo $value['id_assignment'] ?>">
+                                <?php echo $value['assignment_area'] ?></option>
                             <?php } // /forwach ?>
                         </select>
                     </div>
@@ -176,75 +180,123 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
       else if ($this->input->get('opt') == 'bulkst') {
         // echo "Add Bulk Student";        
         ?>
-        <form action="student/createBulk" method="post" id="createBulkForm">
 
-            <center>
-                <button type="button" class="btn btn-default" onclick="addRow()">Add Row</button>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-            </center>
-            <br /> <br />
 
-            <table class="table" id="addBulkStudentTable">
-                <thead>
-                    <tr>
-                        <th style="width: 20%;">First Name</th>
-                        <th style="width: 20%;">Last Name</th>
-                        <th style="width: 20%;">Class</th>
-                        <th style="width: 20%;">Section</th>
-                        <th style="width: 2%;">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-            for($x = 1; $x < 4; $x++) { ?>
-                    <tr id="row<?php echo $x; ?>">
-                        <td>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="bulkstfname<?php echo $x; ?>"
-                                    name="bulkstfname[<?php echo $x; ?>]" placeholder="First Name" autocomplete="off">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="bulkstlname<?php echo $x; ?>"
-                                    name="bulkstlname[<?php echo $x; ?>]" placeholder="Last Name" autocomplete="off">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <select class="form-control" name="bulkstclassName[<?php echo $x; ?>]"
-                                    id="bulkstclassName<?php echo $x; ?>"
-                                    onchange="getSelectClassSection(<?php echo $x; ?>)">
-                                    <option value="">Select</option>
-                                    <?php foreach ($classData as $key => $value) { ?>
-                                    <option value="<?php echo $value['class_id'] ?>"><?php echo $value['class_name'] ?>
-                                    </option>
-                                    <?php } // /forwach ?>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <select class="form-control" name="bulkstsectionName[<?php echo $x; ?>]"
-                                    id="bulkstsectionName<?php echo $x; ?>">
-                                    <option value="">Select Class</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-default" onclick="removeRow(<?php echo $x; ?>)"><i
-                                    class="glyphicon glyphicon-trash"></i></button>
-                        </td>
-                    </tr>
-                    <?php
-            } // /for
-            ?>
 
-                </tbody>
-            </table>
-            <!-- /.form -->
+        <h2>Agregar Usuarios en Masa</h2>
+        <p>Haz click en la linea Agregar para abrir o cerrar el panel.</p>
+        <div class="panel-group">
+            <div class="panel panel-default">
 
-        </form>
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">Agregar varios Usuarios a la vez</a>
+                    </h4>
+                </div>
+
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse2">Agregar usuarios desde un archivo csv </a>
+                    </h4>
+                </div>
+
+                <div id="collapse1" class="panel-collapse collapse">
+                    <form action="student/createBulk" method="post" id="createBulkForm">
+
+                       
+                        <br /> <br />
+
+                        <table class="table" id="addBulkStudentTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%;">Nombre completo</th>
+                                    <th style="width: 20%;">Last Name</th>
+                                    <th style="width: 20%;">Class</th>
+                                    <th style="width: 20%;">Section</th>
+                                    <th style="width: 2%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                        for($x = 1; $x < 4; $x++) { ?>
+                                <tr id="row<?php echo $x; ?>">
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="bulkstfname<?php echo $x; ?>"
+                                                name="bulkstfname[<?php echo $x; ?>]" placeholder="Nombre completo"
+                                                autocomplete="off">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="bulkstlname<?php echo $x; ?>"
+                                                name="bulkstlname[<?php echo $x; ?>]" placeholder="Last Name"
+                                                autocomplete="off">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select class="form-control" name="bulkstclassName[<?php echo $x; ?>]"
+                                                id="bulkstclassName<?php echo $x; ?>"
+                                                onchange="getSelectClassSection(<?php echo $x; ?>)">
+                                                <option value="">Select</option>
+                                                <?php foreach ($classData as $key => $value) { ?>
+                                                <option value="<?php echo $value['class_id'] ?>">
+                                                    <?php echo $value['class_name'] ?>
+                                                </option>
+                                                <?php } // /forwach ?>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select class="form-control" name="bulkstsectionName[<?php echo $x; ?>]"
+                                                id="bulkstsectionName<?php echo $x; ?>">
+                                                <option value="">Select Class</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-default"
+                                            onclick="removeRow(<?php echo $x; ?>)"><i
+                                                class="glyphicon glyphicon-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <?php
+                                        } // /for
+                                        ?>
+
+                            </tbody>
+                        </table>
+
+                        <center>
+                            <button type="button" class="btn btn-default" onclick="addRow()">Agregar Fila</button>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </center>
+                        <br>
+                        <!-- /.form -->
+
+                    </form>
+                </div>
+
+                <div id="collapse2" class="panel-collapse collapse">
+
+                    <form id="csv_form">
+                        <h2>Subir Archivo de estudiantes CSV</h2>
+                        <input type="file" id="csv_file" name="csv_file" size="20" accept=".csv" />
+                        <br /><br />
+                        <input type="button" id="csv_button" value="Subir" />
+                        <br /><br />
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
         <!-- /.form -->
 
         <?php

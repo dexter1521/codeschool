@@ -497,6 +497,7 @@ class Student extends MY_Controller
 	* create bulk student function
 	*------------------------------------
 	*/
+
 	public function createBulk()
 	{
 		$validator = array('success' => false, 'messages' => array());
@@ -557,5 +558,59 @@ class Student extends MY_Controller
 		echo json_encode($validator);
 	}
 
+	public function SubirCSV(){
+
+		if(isset($_FILES['csv_file']) && $_FILES['csv_file']['error'] == 0){
+			 // Cargar el contenido del archivo
+			 $file = $_FILES['csv_file']['tmp_name'];
+			 $csvData = file_get_contents($file);
+			 $lines = explode(PHP_EOL, $csvData);
+			 $header = str_getcsv(array_shift($lines));
+			 $rows = array_map('str_getcsv', $lines);
+			//  var_dump($rows);
+
+			 foreach($rows as $value =>$key){
+				$nameAssigment = $key[3];
+				$id_assisment = $this->model_student->idAssinment($key[3]);
+				if($id_assisment !=null){
+					$data = array(
+						'id_assignment' =>$id_assisment,
+						'no_empleado' => $key[0],
+						'fname' => $key[1],
+						'contact' => $key[4],
+						'email' => $key[5],
+					);
+					$inserta = $this->model_student->createStudend($data);
+					if($inserta == true){
+						print_r('Se inserto correctamente');
+					}else{
+						print_r('No se inserto el estudiante');
+					}
+				}else{
+					$InsertAssigment = array(
+						'assignment_area' => $nameAssigment
+					);
+					$insertAssigment = $this->model_student->createAssigment($InsertAssigment);
+					$data = array(
+						'id_assignment' =>$insertAssigment['idAssingment'],
+						'no_empleado' => $key[0],
+						'fname' => $key[1],
+						'contact' => $key[4],
+						'email' => $key[5],
+					);
+					$inserta = $this->model_student->createStudend($data);
+
+				}
+				// print_r($data); die();
+			 }
+
+		}else{
+			print_r('No se detecto ningun archivo formato csv');
+
+		}
+		
+	}
+
+	
 
 }
