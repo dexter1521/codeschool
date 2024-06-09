@@ -5,7 +5,7 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<a href="student?opt=mgst" style="color:white;">
-					Total Student : <span class="badge"><?php echo $countTotalStudent; ?></span>	
+					Total Estudiantes : <span class="badge"><?php echo $countTotalStudent; ?></span>	
 				</a>				
 			</div>			
 		</div>
@@ -15,7 +15,7 @@
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<a href="teacher">
-					Total Teacher : <span class="badge"><?php echo $countTotalTeacher; ?></span>	 	
+					Total Maestros : <span class="badge"><?php echo $countTotalTeacher; ?></span>	 	
 				</a>
 				
 			</div>			
@@ -26,14 +26,14 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<a href="classes">
-					Total Class : <span class="badge"><?php echo $countTotalClasses; ?></span>		
+					Total Clases : <span class="badge"><?php echo $countTotalClasses; ?></span>		
 				</a>
 				
 			</div>			
 		</div>
 	</div>
 
-	<div class="col-md-3">
+	<!-- <div class="col-md-3">
 		<div class="panel panel-warning">
 			<div class="panel-heading">
 				<a href="marksheet?opt=mngms">
@@ -41,9 +41,9 @@
 				</a>
 			</div>			
 		</div>
-	</div>
+	</div> -->
 
-	<div class="col-md-5">
+	<!-- <div class="col-md-5">
 		<div class="panel panel-default">
 			<div class="panel-heading"> Lifetime Income </div>
 			<div class="panel-body">
@@ -71,11 +71,11 @@
 				</center>
 			</div>	
 		</div>
-	</div>
+	</div> -->
 
 	<div class="col-md-7">
 		<div class="panel panel-default">
-			<div class="panel-heading"> <i class="glyphicon glyphicon-calendar"></i> Calendar</div>
+			<div class="panel-heading"> <i class="glyphicon glyphicon-calendar"></i> Calendarioi</div>
 			<div class="panel-body">
 				<div id="calendar"></div>
 			</div>	

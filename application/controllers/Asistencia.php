@@ -5,20 +5,10 @@ class Asistencia extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-
 		$this->isNotLoggedIn();
-
-		// loading the classes model
-		$this->load->model('model_asistencia');		
-
-		// loading the form validation library
+		$this->load->model('model_asistencia');
 		$this->load->library('form_validation');	
 	}
-
-	// public function index(){
-	// 	$data['classData'] = $this->model_asistencia->clases();	
-	// 	$this->load->view('asistencia', $data);
-	// }
 
 	/*
 	*-----------------------------------------
