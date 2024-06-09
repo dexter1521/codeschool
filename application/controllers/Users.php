@@ -124,7 +124,7 @@ class Users extends MY_Controller
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = "Error while inserting the information into the database";
+				$validator['messages'] = "Error mientras se insertaba la información";
 			}			
 		} 	
 		else {
@@ -173,7 +173,7 @@ class Users extends MY_Controller
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = "Error while inserting the information into the database";
+				$validator['messages'] = "Error mientras se insertaba la información";
 			}			
 		} 	
 		else {

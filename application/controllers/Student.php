@@ -69,11 +69,11 @@ class Student extends MY_Controller
 			$create = $this->model_student->create($imgUrl);					
 			if($create == true) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully added";
+				$validator['messages'] = "Registro Exitoso!";
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = "Error while inserting the information into the database";
+				$validator['messages'] = "Error mientras se insertaba la información";
 			}			
 		} 	
 		else {			
@@ -350,11 +350,11 @@ class Student extends MY_Controller
 				$updateInfo = $this->model_student->updateInfo($studentId);					
 				if($updateInfo == true) {
 					$validator['success'] = true;
-					$validator['messages'] = "Successfully added";
+					$validator['messages'] = "Registro Exitoso!";
 				}
 				else {
 					$validator['success'] = false;
-					$validator['messages'] = "Error while inserting the information into the database";
+					$validator['messages'] = "Error mientras se insertaba la información";
 				}			
 			} 	
 			else {			
@@ -392,7 +392,7 @@ class Student extends MY_Controller
 				}
 				else {
 					$validator['success'] = false;
-					$validator['messages'] = "Error while inserting the information into the database";
+					$validator['messages'] = "Error mientras se insertaba la información";
 				}					
 			} // /else
 			echo json_encode($validator);
@@ -433,11 +433,11 @@ class Student extends MY_Controller
 			$remove = $this->model_student->remove($studentId);
 			if($remove) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully Removed";
+				$validator['messages'] = "Eliminado Correctamente!";
 			} 
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = "Error while removing the information";	
+				$validator['messages'] = "Error mientras se eliminaba the information";	
 			} // /else
 		} // /if
 
@@ -528,11 +528,11 @@ class Student extends MY_Controller
 			$createBulk = $this->model_student->createBulk();			
 			if($createBulk == true) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully added";
+				$validator['messages'] = "Registro Exitoso!";
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = "Error while inserting the information into the database";
+				$validator['messages'] = "Error mientras se insertaba la información";
 			}
 		} else {			
 			$validator['success'] = false;								

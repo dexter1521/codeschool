@@ -379,11 +379,11 @@ class Accounting extends MY_Controller
 			$create = $this->model_accounting->createIndividual();					
 			if($create === true) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully added";
+				$validator['messages'] = "Registro Exitoso!";
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = "Error while inserting the information into the database";
+				$validator['messages'] = "Error mientras se insertaba la información";
 			}			
 		} 	
 		else {
@@ -446,11 +446,11 @@ class Accounting extends MY_Controller
 			$create = $this->model_accounting->createBulk();					
 			if($create === true) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully added";
+				$validator['messages'] = "Registro Exitoso!";
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = "Select at least one student";
+				$validator['messages'] = "Seleccione al menos un estudiante";
 			}			
 		} 	
 		else {
@@ -923,11 +923,11 @@ class Accounting extends MY_Controller
 				$create = $this->model_accounting->updatePayment($id, $type);					
 				if($create === true) {
 					$validator['success'] = true;
-					$validator['messages'] = "Successfully added";
+					$validator['messages'] = "Registro Exitoso!";
 				}
 				else {
 					$validator['success'] = false;
-					$validator['messages'] = "Error while inserting the information into the database";
+					$validator['messages'] = "Error mientras se insertaba la información";
 				}			
 			} 	
 			else {
@@ -984,11 +984,11 @@ class Accounting extends MY_Controller
 					$create = $this->model_accounting->updatePayment($id, $type);					
 					if($create === true) {
 						$validator['success'] = true;
-						$validator['messages'] = "Successfully added";
+						$validator['messages'] = "Registro Exitoso!";
 					}
 					else {
 						$validator['success'] = false;
-						$validator['messages'] = "Select at least one student";
+						$validator['messages'] = "Seleccione al menos un estudiante";
 					}			
 				} 	
 				else {
@@ -1016,11 +1016,11 @@ class Accounting extends MY_Controller
 			$remove = $this->model_accounting->removePayment($id);
 			if($remove === true) {
 				$validator['success'] = true;
-				$validator['messages'] = 'Successfully Removed';
+				$validator['messages'] = 'Eliminado Correctamente!';
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = 'Error while removing';
+				$validator['messages'] = 'Error mientras se eliminaba';
 			}
 
 			echo json_encode($validator);
@@ -1224,11 +1224,11 @@ class Accounting extends MY_Controller
 				$create = $this->model_accounting->updateStudentPay($paymentId);					
 				if($create === true) {
 					$validator['success'] = true;
-					$validator['messages'] = "Successfully added";
+					$validator['messages'] = "Registro Exitoso!";
 				}
 				else {
 					$validator['success'] = false;
-					$validator['messages'] = "Error while inserting the information into the database";
+					$validator['messages'] = "Error mientras se insertaba la información";
 				}			
 			} 	
 			else {
@@ -1255,11 +1255,11 @@ class Accounting extends MY_Controller
 			$remove = $this->model_accounting->removeStudentPay($paymentId);
 			if($remove === true) {
 				$validator['success'] = true;
-				$validator['messages'] = 'Successfully Removed';
+				$validator['messages'] = 'Eliminado Correctamente!';
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = 'Error while removing';
+				$validator['messages'] = 'Error mientras se eliminaba';
 			}
 
 			echo json_encode($validator);
@@ -1317,11 +1317,11 @@ class Accounting extends MY_Controller
 			$create = $this->model_accounting->createExpenses();					
 			if($create === true) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully added";
+				$validator['messages'] = "Registro Exitoso!";
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = "Error while inserting the information into the database";
+				$validator['messages'] = "Error mientras se insertaba la información";
 			}			
 		} 	
 		else {
@@ -1491,11 +1491,11 @@ class Accounting extends MY_Controller
 				$create = $this->model_accounting->updateExpenses($id);					
 				if($create === true) {
 					$validator['success'] = true;
-					$validator['messages'] = "Successfully added";
+					$validator['messages'] = "Registro Exitoso!";
 				}
 				else {
 					$validator['success'] = false;
-					$validator['messages'] = "Error while inserting the information into the database";
+					$validator['messages'] = "Error mientras se insertaba la información";
 				}			
 			} 	
 			else {
@@ -1534,11 +1534,11 @@ class Accounting extends MY_Controller
 			$remove = $this->model_accounting->removeExpenses($id);
 			if($remove === true) {
 				$validator['success'] = true;
-				$validator['messages'] = 'Successfully Removed';
+				$validator['messages'] = 'Eliminado Correctamente!';
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = 'Error while removing';
+				$validator['messages'] = 'Error mientras se eliminaba';
 			}
 
 			echo json_encode($validator);

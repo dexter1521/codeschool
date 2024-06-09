@@ -307,7 +307,7 @@ class Attendance extends MY_Controller
 
 		if($attendance == true) {
 			$validator['success'] = true;
-			$validator['messages'] = 'Successfully Added';
+			$validator['messages'] = 'Registro Exitoso!';
 		}
 		else {
 			$validator['success'] = false;

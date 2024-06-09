@@ -141,11 +141,11 @@ class Subject extends MY_Controller
 			$create = $this->model_subject->create($classId);					
 			if($create == true) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully added";
+				$validator['messages'] = "Registro Exitoso!";
 			}
 			else {
 				$validator['success'] = false;
-				$validator['messages'] = "Error while inserting the information into the database";
+				$validator['messages'] = "Error mientras se insertaba la información";
 			}			
 		} 	
 		else {
@@ -194,11 +194,11 @@ class Subject extends MY_Controller
 				$update = $this->model_subject->update($classId, $subjectId);					
 				if($update == true) {
 					$validator['success'] = true;
-					$validator['messages'] = "Successfully added";
+					$validator['messages'] = "Registro Exitoso!";
 				}
 				else {
 					$validator['success'] = false;
-					$validator['messages'] = "Error while inserting the information into the database";
+					$validator['messages'] = "Error mientras se insertaba la información";
 				}			
 			} 	
 			else {
@@ -273,11 +273,11 @@ class Subject extends MY_Controller
 			$remove = $this->model_subject->remove($subjectId);
 			if($remove === true) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully Removed";
+				$validator['messages'] = "Eliminado Correctamente!";
 			} 
 			else{
 				$validator['success'] = false;
-				$validator['messages'] = "Error while removing the information";
+				$validator['messages'] = "Error mientras se eliminaba the information";
 			}
 			echo json_encode($validator);
 		}

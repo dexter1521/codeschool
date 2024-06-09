@@ -130,11 +130,11 @@ class Marksheet extends MY_Controller
 				$create = $this->model_marksheet->create($classId);					
 				if($create == true) {
 					$validator['success'] = true;
-					$validator['messages'] = "Successfully added";
+					$validator['messages'] = "Registro Exitoso!";
 				}
 				else {
 					$validator['success'] = false;
-					$validator['messages'] = "Error while inserting the information into the database";
+					$validator['messages'] = "Error mientras se insertaba la información";
 				}			
 			} 	
 			else {
@@ -230,11 +230,11 @@ class Marksheet extends MY_Controller
 				$update = $this->model_marksheet->update($marksheetId, $classId);					
 				if($update == true) {
 					$validator['success'] = true;
-					$validator['messages'] = "Successfully added";
+					$validator['messages'] = "Registro Exitoso!";
 				}
 				else {
 					$validator['success'] = false;
-					$validator['messages'] = "Error while inserting the information into the database";
+					$validator['messages'] = "Error mientras se insertaba la información";
 				}			
 			} 	
 			else {
@@ -258,11 +258,11 @@ class Marksheet extends MY_Controller
 			$remove = $this->model_marksheet->remove($marksheetId);
 			if($remove === true) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully Removed";
+				$validator['messages'] = "Eliminado Correctamente!";
 			} 
 			else{
 				$validator['success'] = false;
-				$validator['messages'] = "Error while removing the information";
+				$validator['messages'] = "Error mientras se eliminaba the information";
 			}
 			echo json_encode($validator);
 		}
@@ -319,7 +319,7 @@ class Marksheet extends MY_Controller
 		if($this->form_validation->run() === true) {	
 					
 			$validator['success'] = true;
-			$validator['messages'] = "Successfully added";
+			$validator['messages'] = "Registro Exitoso!";
 
 			$classData = $this->model_classes->fetchClassData($this->input->post('className'));
 			$marksheetNameData = $this->model_marksheet->fetchMarksheetDataByMarksheetId($this->input->post('marksheetName'));
@@ -559,7 +559,7 @@ class Marksheet extends MY_Controller
 			$this->model_marksheet->createStudentMarks();			
 				
 			$validator['success'] = true;
-			$validator['messages'] = "Successfully added";			
+			$validator['messages'] = "Registro Exitoso!";			
 		} else {			
 			$validator['success'] = false;								
 			foreach ($_POST as $key => $value) {					
