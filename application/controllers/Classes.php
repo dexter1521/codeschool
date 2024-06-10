@@ -178,11 +178,11 @@ class Classes extends MY_Controller
 				$update = $this->model_classes->update();					
 				if($update == true) {
 					$validator['success'] = true;
-					$validator['messages'] = "Successfully added";
+					$validator['messages'] = "Registro Exitoso!";
 				}
 				else {
 					$validator['success'] = false;
-					$validator['messages'] = "Error while inserting the information into the database";
+					$validator['messages'] = "Error mientras se insertaba la información";
 				}			
 			} 	
 			else {
@@ -248,11 +248,11 @@ class Classes extends MY_Controller
 			$remove = $this->model_classes->remove($classId);
 			if($remove === true) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully Removed";
+				$validator['messages'] = "Eliminado Correctamente!";
 			} 
 			else{
 				$validator['success'] = false;
-				$validator['messages'] = "Error while removing the information";
+				$validator['messages'] = "Error mientras se eliminaba the information";
 			}
 			echo json_encode($validator);
 		}

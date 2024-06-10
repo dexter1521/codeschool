@@ -5,20 +5,10 @@ class Asistencia extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-
 		$this->isNotLoggedIn();
-
-		// loading the classes model
-		$this->load->model('model_asistencia');		
-
-		// loading the form validation library
+		$this->load->model('model_asistencia');
 		$this->load->library('form_validation');	
 	}
-
-	// public function index(){
-	// 	$data['classData'] = $this->model_asistencia->clases();	
-	// 	$this->load->view('asistencia', $data);
-	// }
 
 	/*
 	*-----------------------------------------
@@ -207,11 +197,11 @@ class Asistencia extends MY_Controller
 				$update = $this->model_classes->update();					
 				if($update == true) {
 					$validator['success'] = true;
-					$validator['messages'] = "Successfully added";
+					$validator['messages'] = "Registro Exitoso!";
 				}
 				else {
 					$validator['success'] = false;
-					$validator['messages'] = "Error while inserting the information into the database";
+					$validator['messages'] = "Error mientras se insertaba la información";
 				}			
 			} 	
 			else {
@@ -277,11 +267,11 @@ class Asistencia extends MY_Controller
 			$remove = $this->model_classes->remove($classId);
 			if($remove === true) {
 				$validator['success'] = true;
-				$validator['messages'] = "Successfully Removed";
+				$validator['messages'] = "Eliminado Correctamente!";
 			} 
 			else{
 				$validator['success'] = false;
-				$validator['messages'] = "Error while removing the information";
+				$validator['messages'] = "Error mientras se eliminaba the information";
 			}
 			echo json_encode($validator);
 		}
