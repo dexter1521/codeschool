@@ -1,6 +1,8 @@
-<body>
-    <div class="container">
-        <input type="text" value="<?php echo (base_url()) ?>" id='base_url' name='base_url' hidden>
+<input type="text" value="<?php echo (base_url()) ?>" id='base_url' name='base_url' hidden>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
 
         <div class="form-group">
             <label for="className">Selecciona la clase</label>
@@ -22,9 +24,12 @@
         <div id="clock"></div>
         <label for="barcode">Escanea tu Código de Barra:</label>
         <input type="text" id="barcode" name="barcode" autofocus class="form-control">
-    </div>
 
-</body>
+    </div>
+    <!-- /panle-bdy -->
+</div>
+<!-- /.panel -->
+
 
 <script>
     function updateClock() {
@@ -58,9 +63,6 @@
         //cambia el contenido del select seccion al cambiar el contenido del select clase
         $("#className").unbind('change').bind('change', function() {
             var class_id = $(this).val();
-            // console.log( <?php echo (base_url()) ?> + 'student/fetchClassSection/' + class_id);
-
-            // console.log( <?php echo (base_url()) ?> + 'student/fetchClassSection/' + class_id);
             $("#sectionName").load(base_url + 'student/fetchClassSection/' + class_id);
         });
 

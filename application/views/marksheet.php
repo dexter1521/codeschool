@@ -22,7 +22,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 ?>
 <div class="row">
 	<div class="col-md-4">
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			
 			<div class="panel-heading">
 				Class
@@ -54,7 +54,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 	<!-- /col-md-4 -->
 
 	<div class="col-md-8">
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 		  <!-- Default panel contents -->
 		  <div class="panel-heading">Manage Marksheet</div>
 		  
@@ -73,7 +73,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 else if($this->input->get('opt') == 'mgmk') {
 	// manage marks
 ?>
-<div class="panel panel-default">
+<div class="panel panel-primary">
   	<!-- Default panel contents -->
 	<div class="panel-heading">Manage Marks</div>
 	  

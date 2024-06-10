@@ -5,7 +5,7 @@
   <li class="active">Administrar Clase</li>
 </ol>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
     Administrar clase
   </div>

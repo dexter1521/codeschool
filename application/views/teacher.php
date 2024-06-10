@@ -3,7 +3,7 @@
   <li class="active">Manage Teacher</li>
 </ol>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-body">  	
     <fieldset>
     	<legend>Manage Teacher</legend>    	

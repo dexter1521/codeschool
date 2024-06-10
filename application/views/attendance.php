@@ -10,22 +10,22 @@ if($this->input->get('atd') == '' || !$this->input->get('atd')) {
   <li><a href="<?php echo base_url('dashboard') ?>">Home</a></li> 
   <?php   
   if($this->input->get('atd') == 'add') {
-    echo '<li class="active">Take Attendance</li>';
+    echo '<li class="active">Toma Asistencia</li>';
   } 
   else if ($this->input->get('atd') == 'report') {
-    echo '<li class="active">Attendance Report</li>';
+    echo '<li class="active">Report Asistencia </li>';
   }  
   ?>  
 </ol>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
     <?php   
     if($this->input->get('atd') == 'add') {
-      echo "Take Attendance";
+      echo "Toma Asistencia";
     } 
     else if ($this->input->get('atd') == 'report') {
-      echo "Attendance Report";
+      echo "Report Asistencia";
     }
     ?>  
   	
@@ -39,12 +39,12 @@ if($this->input->get('atd') == '' || !$this->input->get('atd')) {
         ?>
         <form class="form-horizontal" method="post" id="getAttendanceForm">
 		  <div class="form-group">
-		    <label for="type" class="col-sm-2 control-label">Select Type</label>
+		    <label for="type" class="col-sm-2 control-label">Selecciona un perfil</label>
 		    <div class="col-sm-10">
 		      <select class="form-control" name="type" id="type">
-		      	<option value="">Select</option>
-		      	<option value="1">Student</option>
-		      	<option value="2">Teacher</option>
+		      	<option value="">Seleccione</option>
+		      	<option value="1">Estudiante</option>
+		      	<option value="2">Maestro</option>
 		      </select>
 		    </div>
 		  </div>
@@ -60,17 +60,17 @@ if($this->input->get('atd') == '' || !$this->input->get('atd')) {
         ?>        
         <form class="form-horizontal" method="post" id="getAttendanceReport" action="attendance/report">
 		  <div class="form-group">
-		    <label for="type" class="col-sm-2 control-label">Select Type</label>
+		    <label for="type" class="col-sm-2 control-label">Selecciona un perfil</label>
 		    <div class="col-sm-10">
 		      <select class="form-control" name="type" id="type">
-		      	<option value="">Select</option>
-		      	<option value="1">Student</option>
-		      	<option value="2">Teacher</option>
+			  <option value="">Seleccione</option>
+		      	<option value="1">Estudiante</option>
+		      	<option value="2">Maestro</option>
 		      </select>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		  	<label for="type" class="col-sm-2 control-label">Date</label>
+		  	<label for="type" class="col-sm-2 control-label">Fecha</label>
 		    <div class="col-sm-10">
 		      <input type="text" name="reportDate" id="reportDate" autocomplete="off" class="form-control" placeholder="Date"/>
 		    </div>
@@ -80,7 +80,7 @@ if($this->input->get('atd') == '' || !$this->input->get('atd')) {
 		  <div class="form-group">		  	
 		    <div class="col-sm-10 col-sm-offset-2">
 		    	<input type="hidden" name="num_of_days" id="num_of_days" autocomplete="off" />
-		      	<button type="submit" class="btn btn-primary">Generate Report</button>		  
+		      	<button type="submit" class="btn btn-primary">Generar Reporte</button>		  
 		    </div>
 		  </div>		 
 		</form>
