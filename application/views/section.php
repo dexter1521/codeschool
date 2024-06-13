@@ -8,17 +8,18 @@
 <!-- /col-md-4 -->
 
 <div class="col-md-12">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
         <!-- Default panel contents -->
         <div class="panel-heading">Administrar Sede
 
-        <button class="pull-right" type="button" class="btn btn-default" data-toggle="modal" data-target="#addClass"
-                id="addClassModelBtn">
-                <i class="glyphicon glyphicon-plus-sign"></i> Agregar Sede
-            </button>
+
         </div>
 
         <div class="panel-body">
+            <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addSectionModal" id="addClassModelBtn">
+                <i class="glyphicon glyphicon-plus-sign">Agregar Sede</i>
+            </button>
+
             <div class="result">
 
                 <table id="managesectionTable" class="table table-bordered">
@@ -31,6 +32,7 @@
                     </thead>
                 </table>
             </div>
+
         </div>
     </div>
 </div>
@@ -43,8 +45,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Añadir Sede</h4>
             </div>
             <form action="<?php echo base_url('section/create') ?>" method="post" id="addSectionForm">
@@ -53,55 +54,28 @@
 
                     <div class="form-group">
                         <label for="sectionName">Nombre de la Sede</label>
-                        <input type="text" class="form-control" id="sectionName" name="sectionName"
-                            placeholder="Nombre de la seccion">
+                        <input type="text" class="form-control" id="sectionName" name="sectionName" placeholder="Nombre de la seccion">
                     </div>
-
-                    <div class="form-group">
-                        <label for="FI">Fecha inicio</label>
-                        <input type="text" class="form-control" id="FI" name="FI" placeholder="Fecha de inicio"
-                            autocomplete="off">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="FF">Fecha de fin</label>
-                        <input type="text" class="form-control" id="FF" name="FF" placeholder="Fecha de fin"
-                            autocomplete="off">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="HI">Hora de inicio</label>
-                        <input type="time" class="form-control" id="HI" name="HI" placeholder="Hora de inicio"
-                            autocomplete="off">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="HF">Hora de fin</label>
-                        <input type="time" class="form-control" id="HF" name="HF" placeholder="Hora de fin"
-                            autocomplete="off">
-                    </div>
-
 
                     <!--
                     <div class="form-group">
                         <label for="teacherName">Teacher : </label>
                         <select class="form-control" name="teacherName" id="teacherName">
                             <option value="">Select a Teacher</option>
-                            <?php 
-		    	if($teacherData) { 
-	    			foreach ($teacherData as $key => $value): ?>
+                            <?php
+                            if ($teacherData) {
+                                foreach ($teacherData as $key => $value) : ?>
                             <option value="<?php echo $value['teacher_id'] ?>">
                                 <?php echo $value['fname'] . ' ' . $value['lname'] ?></option>
-                            <?php 
-			    	endforeach 
-			    	?>
                             <?php
-		    	} 
-		    	else { ?>
+                                endforeach
+                            ?>
+                            <?php
+                            } else { ?>
                             <option value="">No Data Available</option>
-                            <?php 
-		    	}
-		    	?>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
                     -->
@@ -109,8 +83,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
 
             </form>
@@ -123,9 +97,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Edit Section</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Nombre de la Sede</h4>
             </div>
             <form action="<?php echo base_url('section/update') ?>" method="post" id="editSectionForm">
                 <div class="modal-body">
@@ -133,35 +106,33 @@
 
                     <div class="form-group">
                         <label for="editSectionName">Section Name</label>
-                        <input type="text" class="form-control" id="editSectionName" name="editSectionName"
-                            placeholder="Section Name">
+                        <input type="text" class="form-control" id="editSectionName" name="editSectionName" placeholder="Section Name">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="editTeacherName">Teacher : </label>
                         <select class="form-control" name="editTeacherName" id="editTeacherName">
                             <option value="">Select a Teacher</option>
-                            <?php 
-		    	if($teacherData) { 
-	    			foreach ($teacherData as $key => $value): ?>
-                            <option value="<?php echo $value['teacher_id'] ?>">
-                                <?php echo $value['fname'] . ' ' . $value['lname'] ?></option>
-                            <?php 
-			    	endforeach 
-			    	?>
                             <?php
-		    	} 
-		    	else { ?>
-                            <option value="">No Data Available</option>
-                            <?php 
-		    	}
-		    	?>
+                            if ($teacherData) {
+                                foreach ($teacherData as $key => $value) : ?>
+                                    <option value="<?php echo $value['teacher_id'] ?>">
+                                        <?php echo $value['fname'] . ' ' . $value['lname'] ?></option>
+                                <?php
+                                endforeach
+                                ?>
+                            <?php
+                            } else { ?>
+                                <option value="">No Data Available</option>
+                            <?php
+                            }
+                            ?>
                         </select>
-                    </div>
+                    </div> -->
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
 
             </form>
@@ -174,18 +145,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Remove Section</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Eliminar Seccion</h4>
             </div>
             <div class="modal-body">
                 <div id="remove-messages"></div>
 
-                <p>Do you really want to remove ?</p>
+                <p>Realmente desea eliminar la sección ?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="removeSectionBtn">Save changes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-success" id="removeSectionBtn">Guardar</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

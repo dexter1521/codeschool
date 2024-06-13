@@ -44,7 +44,7 @@
 	</div> -->
 
 	<!-- <div class="col-md-5">
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			<div class="panel-heading"> Lifetime Income </div>
 			<div class="panel-body">
 				<center>
@@ -53,7 +53,7 @@
 			</div>	
 		</div>
 
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			<div class="panel-heading"> Lifetime Expenses </div>
 			<div class="panel-body">
 				<center>
@@ -63,7 +63,7 @@
 			</div>	
 		</div>
 
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			<div class="panel-heading"> Current Budget </div>
 			<div class="panel-body">
 				<center>
@@ -74,7 +74,7 @@
 	</div> -->
 
 	<div class="col-md-7">
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			<div class="panel-heading"> <i class="glyphicon glyphicon-calendar"></i> Calendarioi</div>
 			<div class="panel-body">
 				<div id="calendar"></div>

@@ -21,7 +21,7 @@
 
 
 <div class="col-md-6 col-md-offset-3 vertical-off-4">
-	<div class="panel panel-default login-form">
+	<div class="panel panel-primary login-form">
 	  	<div class="panel-body">
 	  		<form method="post" action="<?php echo base_url('users/login') ?>" id="loginForm">
 		    	<fieldset>

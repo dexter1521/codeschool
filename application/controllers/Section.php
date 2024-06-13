@@ -93,10 +93,10 @@ class Section extends MY_Controller
 	* through class_id and section_id 
 	*----------------------------------------------
 	*/
-	public function fetchSectionByClassSection($classId = null, $sectionId = null)
+	public function fetchSectionByClassSection($sectionId = null)
 	{
-		if($classId && $sectionId) {
-			$sectionData = $this->model_section->fetchSectionByClassSection($classId, $sectionId);		
+		if($sectionId) {
+			$sectionData = $this->model_section->fetchSectionByClassSection($sectionId);		
 			
 			echo json_encode($sectionData);
 		} // /if
@@ -115,14 +115,14 @@ class Section extends MY_Controller
 		$validate_data = array(
 			array(
 				'field' => 'sectionName',
-				'label' => 'Section Name',
-				'rules' => 'required'
+				'label' => 'nombre de la seccion',
+				'rules' => 'required|trim'
 			)
-			// array(
-			// 	'field' => 'teacherName',
-			// 	'label' => 'Teacher Name',
-			// 	'rules' => 'required'
-			// )
+			/* ,array(
+				'field' => 'teacherName',
+				'label' => 'Teacher Name',
+				'rules' => 'required'
+			) */
 		);
 
 		$this->form_validation->set_rules($validate_data);
@@ -154,9 +154,9 @@ class Section extends MY_Controller
 	* update the section  
 	*----------------------------------------------
 	*/
-	public function update($classId = null, $sectionId = null)
+	public function update($sectionId = null)
 	{
-		if($classId && $sectionId) {
+		if($sectionId) {
 		$validator = array('success' => false, 'messages' => array());
 
 		$validate_data = array(
@@ -165,18 +165,18 @@ class Section extends MY_Controller
 				'label' => 'Section Name',
 				'rules' => 'required'
 			),
-			array(
+			/* rray(
 				'field' => 'editTeacherName',
 				'label' => 'Teacher Name',
 				'rules' => 'required'
-			)
+			) */
 		);
 
 		$this->form_validation->set_rules($validate_data);
 		$this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
 
 		if($this->form_validation->run() === true) {							
-			$update = $this->model_section->update($classId, $sectionId);					
+			$update = $this->model_section->update($sectionId);					
 			if($update == true) {
 				$validator['success'] = true;
 				$validator['messages'] = "Registro Exitoso!";
@@ -259,8 +259,8 @@ class Section extends MY_Controller
 				    Accion <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
-				    <li><a type="button" data-toggle="modal" data-target="#editClassModal" onclick="editClass('.$value['section_id'].')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
-				    <li><a type="button" data-toggle="modal" data-target="#removeClassModal" onclick="removeClass('.$value['section_id'].')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
+				    <li><a type="button" class="btn btn-warning" data-toggle="modal" data-target="#editSectionModal" onclick="editSection('.$value['section_id'].')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
+				    <li><a type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeSectionModal" onclick="removeSection('.$value['section_id'].')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
 				  </ul>
 				</div>';
 

@@ -24,7 +24,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 
 <?php if($this->input->get('opt') == 'addst' || $this->input->get('opt') == 'bulkst') { ?>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
     <?php   
     if($this->input->get('opt') == 'addst') {
@@ -248,7 +248,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 else if($this->input->get('opt') == 'mgst') { ?>
   <div class="row">
           <div class="col-md-4">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
 
               <div class="panel-heading">
                 Class
@@ -281,7 +281,7 @@ else if($this->input->get('opt') == 'mgst') { ?>
           <!-- /.col-md-4 -->
           <div class="col-md-8">              
 
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
               <div class="panel-heading">Manage Student</div>
               <div class="panel-body">
                 <div id="result"></div>                                        

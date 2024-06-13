@@ -28,7 +28,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 <div class="row">
 <?php if($this->input->get('opt') == 'crtpay' || $this->input->get('opt') == 'mgexp' || $this->input->get('opt') == 'ime') { ?>
 <div class="col-md-12">
-  <div class="panel panel-default">
+  <div class="panel panel-primary">
   	<div class="panel-heading">
   		<?php   
   	    if($this->input->get('opt') == 'crtpay') {
@@ -139,7 +139,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
 } // /.if create payment, manage expenses, income
 else if($this->input->get('opt') == 'mgpay') { ?>
 <div class="col-sm-3">
-	<div class="panel panel-default">
+	<div class="panel panel-primary">
 		<div class="panel-heading">
 			Manage Section
 		</div>
