@@ -111,10 +111,10 @@ class Classes extends MY_Controller
 	* retrieve class name 
 	*------------------------------------
 	*/
-	public function fetchClassData($classId = null)
+	public function fetchClassData($sectionID = null)
 	{
-		if($classId) {
-			$classData = $this->model_classes->DataClass($classId);
+		if($sectionID) {
+			$classData = $this->model_classes->DataClass($sectionID);
 			echo json_encode($classData);
 		}
 		else {
@@ -146,6 +146,76 @@ class Classes extends MY_Controller
 
 			echo json_encode($result);
 		} // /else		
+	}
+
+	public function fecthClassbySection( $sectionID = null){
+		if($sectionID) {
+			$classData = $this->model_classes->DataClass($sectionID);
+			$sectionData = $this->model_classes->fetchSectiondataByID($sectionID);
+			//  var_dump($classData);die();
+			// $sectionData = $this->model_section->fetchSectionDataByClass($classId);
+			// $classData = $this->model_classes->fetchClassData($classId);
+			
+			$table = '
+
+			<div class="well">
+				Nombre de la Sede : '.$sectionData[0]['section_name'].'
+			</div>
+
+			<div id="messages"></div>
+
+		  		
+		  	<br /> <br />
+
+		  	<!-- Table -->
+		  	<table class="table table-bordered" id="manageSectionTable">
+			    <thead>	
+			    	<tr>
+			    		<th>#</th>
+                                    <th>Nombre de clase</th>
+                                    <th>Nombre numerico</th>
+                                    <th>Sede</th>
+                                    <th>Accion</th>
+			    	</tr>
+			    </thead>
+			    <tbody>';
+			    	if($classData) {
+
+			    		foreach ($classData as $key => $value) {
+
+			    			// $teacherData = $this->model_teacher->fetchTeacherData($value['teacher_id']);
+							$x=1;
+			    			$button = '<div class="btn-group">
+							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Accion <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu">
+							    <li><a type="button" data-toggle="modal" data-target="#editSectionModal" onclick="editSection('.$value['class_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
+							    <li><a type="button" data-toggle="modal" data-target="#removeSectionModal" onclick="removeSection('.$value['class_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
+							  </ul>
+							</div>';
+
+				    		$table .= '<tr>
+								<td>'.$x.'</td>
+				    			<td>'.$value['class_name'].'</td>
+				    			<td>'.$value['numeric_name'].'</td>
+								<td>'.$value['section_name'].'</td>
+				    			<td>'.$button.'</td>
+				    		</tr>
+				    		';
+							$x++;
+				    	} // /foreach				    	
+			    	} 
+			    	else {
+			    		$table .= '<tr>
+			    			<td colspan="3"><center>No Data Available</center></td>
+			    		</tr>';
+			    	} // /else
+			    $table .= '</tbody>
+			</table>
+			';
+			echo $table;
+		}
 	}
 
 	/*

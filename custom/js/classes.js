@@ -9,6 +9,23 @@ $(document).ready(function() {
 		'ajax' : base_url + 'classes/fetchClassData',
 		'order': []
 	});
+	$('#FI').calendarsPicker({
+		dateFormat: 'yyyy-mm-dd'
+	});
+	$('#FF').calendarsPicker({
+		dateFormat: 'yyyy-mm-dd'
+	});
+
+	$('#HI').flatpickr({
+		enableTime: true,
+		noCalendar: true,
+		dateFormat: "H:i",
+	});
+
+	$('#HF').calendarsPicker({
+		dateFormat: 'yyyy-mm-dd'
+		// timeFormat: 'HH:mm:ss'
+	});
 
 	/*
 	*------------------------------------
@@ -48,13 +65,11 @@ $(document).ready(function() {
 					else {
 						$.each(response.messages, function(index, value) {
 							var key = $("#" + index);
-
 							key.closest('.form-group')
 							.removeClass('has-error')
 							.removeClass('has-success')
 							.addClass(value.length > 0 ? 'has-error' : 'has-success')
 							.find('.text-danger').remove();							
-
 							key.after(value);
 
 						});
@@ -147,13 +162,15 @@ function editClass(class_id = null)
 	} // /
 }
 
-function getClassSection(classId = null) 
-{
-	if(classId) {
+function getClassSection(sectionID = null) 
+{	
+	if(sectionID) {
 		$(".list-group-item").removeClass('active');
-		$("#classId"+classId).addClass('active');
+		$("#sectionID"+sectionID).addClass('active');
 		$.ajax({
-			url: base_url + 'section/fetchSectionTable/' + classId,
+			// url: base_url + 'Classes/fetchClassData/' + sectionID,
+			url: base_url + 'Classes/fecthClassbySection/' + sectionID,
+
 			type: 'post',		
 			success:function(response) {
 				$(".result").html(response);

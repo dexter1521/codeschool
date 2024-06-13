@@ -15,14 +15,14 @@
 
             <div class="list-group">
                 <?php 
-				if($classData) {
+				if($sectionData) {
 					$x = 1;
-					foreach ($classData as $value) { 
+					foreach ($sectionData as $value) { 
 					?>
                 <a class="list-group-item classSideBar <?php if($x == 1) { echo 'active'; } ?>"
-                    onclick="getClassSection(<?php echo $value['class_id'] ?>)"
-                    id="classId<?php echo $value['class_id'] ?>">
-                    <?php echo $value['class_name']; ?>(<?php echo $value['numeric_name']; ?>)
+                    onclick="getClassSection(<?php echo $value['section_id'] ?>)"
+                    id="sectionID<?php echo $value['section_id'] ?>">
+                    <?php echo $value['section_name']; ?>
                 </a>
                 <?php 
 					$x++;
@@ -58,17 +58,21 @@
 
                 <br /> <br /> <br />
 
-                <table id="manageClassTable" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre de clase</th>
-                            <th>Nombre numerico</th>
-                            <th>Sede</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
-                </table>
+                <div class="panel-body">
+                    <div class="result">
+                        <table id="manageClassTable" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre de clase</th>
+                                    <th>Nombre numerico</th>
+                                    <th>Sede</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -122,6 +126,31 @@
                                 <?php } // /forwach ?>
                             </select>
                         </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="FI">Fecha inicio</label>
+                        <input type="text" class="form-control" id="FI" name="FI" placeholder="Fecha de inicio"
+                            autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="FF">Fecha de fin</label>
+                        <input type="text" class="form-control" id="FF" name="FF" placeholder="Fecha de fin"
+                            autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="HI">Hora de inicio</label>
+                        <input type="time" class="form-control" id="HI" name="HI" placeholder="Hora de inicio"
+                            autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="HF">Hora de fin</label>
+                        <input type="time" class="form-control" id="HF" name="HF" placeholder="Hora de fin"
+                            autocomplete="off">
                     </div>
 
                     <div class="modal-footer">
