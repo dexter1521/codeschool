@@ -21,7 +21,13 @@ class Model_Classes extends CI_Model
 			'fecha_inicio' => $this->input->post('FI'),
 			'fecha_fin' => $this->input->post('FF'),
 			'hora_inicio' => $this->input->post('HI'),
-			'hora_fin' => $this->input->post('HF')
+			'hora_fin' => $this->input->post('HF'),
+			'lunes'=> $this->input->post('L')? $this->input->post('L') : 0,
+			'martes'=> $this->input->post('M') ? $this->input->post('M') : 0,
+			'miercoles'=> $this->input->post('MI')? $this->input->post('MI') : 0,
+			'jueves'=> $this->input->post('J')? $this->input->post('J') : 0,
+			'viernes'=> $this->input->post('V')? $this->input->post('V') : 0,
+			'sabado'=> $this->input->post('S')? $this->input->post('S') : 0
 		);
 		$status = $this->db->insert('class', $insert_data);		
 		return ($status === true ? true : false);
@@ -89,8 +95,7 @@ class Model_Classes extends CI_Model
 
 	public function DataClass($classId = null){
 		if($classId) {
-			// $sql = "SELECT * FROM class WHERE class_id = ?";
-			$this->db->select('c.class_id,c.class_name,c.numeric_name,s.section_name');
+	
 			$this->db->from('class c');
 			$this->db->join('section s', 's.section_id = c.section_id');
 			$this->db->where('s.section_id',$classId);

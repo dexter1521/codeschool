@@ -111,10 +111,17 @@ class Classes extends MY_Controller
 	* retrieve class name 
 	*------------------------------------
 	*/
-	public function fetchClassData($sectionID = null)
+	public function fetchClassData($sectionID = null, $classId = null)
 	{
+
+		// $classData = $this->model_classes->DataClass($sectionID);
+		// 	echo json_encode($classData);
+
 		if($sectionID) {
 			$classData = $this->model_classes->DataClass($sectionID);
+			echo json_encode($classData);
+		}else if ($classId){
+			$classData = $this->model_classes->DataClass($classId);
 			echo json_encode($classData);
 		}
 		else {
@@ -148,11 +155,13 @@ class Classes extends MY_Controller
 		} // /else		
 	}
 
+	// public function check
+
 	public function fecthClassbySection( $sectionID = null){
 		if($sectionID) {
 			$classData = $this->model_classes->DataClass($sectionID);
 			$sectionData = $this->model_classes->fetchSectiondataByID($sectionID);
-			//  var_dump($classData);die();
+			 var_dump($classData);die();
 			// $sectionData = $this->model_section->fetchSectionDataByClass($classId);
 			// $classData = $this->model_classes->fetchClassData($classId);
 			

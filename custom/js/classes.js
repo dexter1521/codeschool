@@ -9,22 +9,18 @@ $(document).ready(function() {
 		'ajax' : base_url + 'classes/fetchClassData',
 		'order': []
 	});
+
 	$('#FI').calendarsPicker({
 		dateFormat: 'yyyy-mm-dd'
 	});
 	$('#FF').calendarsPicker({
 		dateFormat: 'yyyy-mm-dd'
 	});
-
-	$('#HI').flatpickr({
-		enableTime: true,
-		noCalendar: true,
-		dateFormat: "H:i",
-	});
-
-	$('#HF').calendarsPicker({
+	$('#editFI').calendarsPicker({
 		dateFormat: 'yyyy-mm-dd'
-		// timeFormat: 'HH:mm:ss'
+	});
+	$('#editFF').calendarsPicker({
+		dateFormat: 'yyyy-mm-dd'
 	});
 
 	/*
@@ -85,22 +81,48 @@ $(document).ready(function() {
 }); // /document
 
 function editClass(class_id = null)
-{
+{	
+
+
 	if(class_id) {
 		/*Clear the form*/
+		// $("#editClassModal")[0].reset();
+
 		$(".form-group").removeClass('has-error').removeClass('has-success');
 		$('.text-danger').remove();
 		$("#edit-class-messages").html('');
 		$("#classId").remove();
+
+		// $('#editClassModal').modal('show');
 
 		$.ajax({
 			url: base_url + 'classes/fetchClassData/'+class_id,
 			type: 'post',
 			dataType: 'json',
 			success:function(response) {
+				// console.log(response);
+
 				$("#editClassName").val(response.class_name);
 
 				$("#editNumericName").val(response.numeric_name);
+
+				$("#sectionname").val(response.sectionID);
+
+				$("#editFI").val(response.fecha_inicio);
+
+				$("#editFF").val(response.fecha_fin);
+
+				$("#editHI").val(response.hora_inicio);
+
+				$("#editHF").val(response.hora_fin);
+
+				$("#L").prop('checked', response.lunes);
+				$("#M").prop('checked', response.martes);
+				$("#MI").prop('checked', response.miercoles);
+				$("#J").prop('checked', response.jueves);
+				$("#V").prop('checked', response.viernes);
+				$("#S").prop('checked', response.sabado);
+
 
 				// hidden class_id input field
 				$(".edit-class-modal-footer").append('<input type="hidden" name="classId" id="classId" value="'+response.class_id+'" />');

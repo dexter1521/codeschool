@@ -49,3 +49,8 @@
 .alternate-dates {
 	display: none;
 }
+
+.inline-checkbox {
+	display: inline-block;
+	margin-right: 10px;
+}
