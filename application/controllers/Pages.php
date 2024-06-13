@@ -13,17 +13,21 @@ class Pages extends MY_Controller
 
         $data['title'] = ucfirst($page); // Capitalize the first letter
 
-        if($page == 'section' || $page == 'subject' || $page == 'student' || $page == 'marksheet' || 
+        if($page == 'section' || $page == 'subject' || $page == 'student' || $page == 'marksheet' || $page =='classes'||
             $page == 'accounting' || $page == 'Asistencia') {
+
             $this->load->model('model_classes');
             $this->load->model('model_student');
+            $this->load->model('model_section');
+
 
             $data['classData'] = $this->model_classes->fetchClassData();
             $data['classData1'] = $this->model_student->fetchClassData();
+            $data['sectionData'] = $this->model_section->fetchSectionData();
 
 
-            $this->load->model('model_teacher');
-            $data['teacherData'] = $this->model_teacher->fetchTeacherData();
+            // $this->load->model('model_teacher');
+            // $data['teacherData'] = $this->model_teacher->fetchTeacherData();
 
             
             $this->load->model('model_accounting');

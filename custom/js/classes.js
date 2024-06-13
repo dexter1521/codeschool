@@ -65,6 +65,8 @@ $(document).ready(function() {
 		}); // /create class form submit
 	}); // /add class model btn
 
+	
+
 }); // /document
 
 function editClass(class_id = null)
@@ -143,6 +145,21 @@ function editClass(class_id = null)
 			} // /successs
 		}); // /ajax
 	} // /
+}
+
+function getClassSection(classId = null) 
+{
+	if(classId) {
+		$(".list-group-item").removeClass('active');
+		$("#classId"+classId).addClass('active');
+		$.ajax({
+			url: base_url + 'section/fetchSectionTable/' + classId,
+			type: 'post',		
+			success:function(response) {
+				$(".result").html(response);
+			} // /success
+		}); // /ajax 
+	}
 }
 
 /*

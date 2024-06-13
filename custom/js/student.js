@@ -190,7 +190,7 @@ $(document).ready(function () {
 
 		getClassSection(class_id);
 
-	} // /manage student table
+	} // /manage student tablelden
 
 });
 

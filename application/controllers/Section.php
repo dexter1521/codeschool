@@ -60,7 +60,7 @@ class Section extends MY_Controller
 
 			    			$button = '<div class="btn-group">
 							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    Action <span class="caret"></span>
+							    Accion <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu">
 							    <li><a type="button" data-toggle="modal" data-target="#editSectionModal" onclick="editSection('.$value['section_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
@@ -243,6 +243,36 @@ class Section extends MY_Controller
 			    $table .= '</tbody>';
 			    echo $table;					
 		} // /if
+	}
+
+
+	public function ListSection(){
+
+			$sectionData = $this->model_section->fetchSectionData();
+			$result = array('data' => array());
+			$x = 1;
+			foreach ($sectionData as $key => $value) {
+
+				$button = '<!-- Single button -->
+				<div class="btn-group">
+				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    Accion <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <li><a type="button" data-toggle="modal" data-target="#editClassModal" onclick="editClass('.$value['section_id'].')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
+				    <li><a type="button" data-toggle="modal" data-target="#removeClassModal" onclick="removeClass('.$value['section_id'].')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
+				  </ul>
+				</div>';
+
+				$result['data'][$key] = array(
+					$x,
+					$value['section_name'],
+					$button
+				);
+				$x++;
+			} // /froeach
+
+			echo json_encode($result);
 	}
 
 	/*
