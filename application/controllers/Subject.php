@@ -39,7 +39,7 @@ class Subject extends MY_Controller
 			<div id="messages"></div>
 
 			<div class="pull pull-right">
-	  			<button class="btn btn-default" data-toggle="modal" data-target="#addSubjectModal" onclick="addSubject('.$classId.')">Add Subject</button>	
+	  			<button class="btn btn-default" data-toggle="modal" data-target="#addSubjectModal" onclick="addSubject('.$classId.')">Agregar</button>	
 		  	</div>
 		  		
 		  	<br /> <br />
@@ -50,7 +50,7 @@ class Subject extends MY_Controller
 			    	<tr>
 			    		<th> Subject Name </th>			    		
 			    		<th> Teacher Name  </th>
-			    		<th> Action </th>
+			    		<th> Acciones </th>
 			    	</tr>
 			    </thead>
 			    <tbody>';
@@ -61,12 +61,12 @@ class Subject extends MY_Controller
 
 			    			$button = '<div class="btn-group">
 							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    Action <span class="caret"></span>
+							    Accion <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu">
-							    <li><a type="button" data-toggle="modal" data-target="#editSubjectModal" onclick="editSubject('.$value['subject_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
+							    <li><a type="button" data-toggle="modal" data-target="#editSubjectModal" onclick="editSubject('.$value['subject_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
 							    
-							    <li><a type="button" data-toggle="modal" data-target="#removeSubjectModal" onclick="removeSubject('.$value['subject_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>		    
+							    <li><a type="button" data-toggle="modal" data-target="#removeSubjectModal" onclick="removeSubject('.$value['subject_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
 							  </ul>
 							</div>';
 

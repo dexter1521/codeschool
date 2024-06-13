@@ -53,16 +53,16 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li id="topNavDashboard"><a href="<?php echo base_url('dashboard') ?>"> 
-                <i class="glyphicon glyphicon-dashboard"></i> Dashboard <span class="sr-only">(current)</span></a></li>
+              <!-- <li id="topNavDashboard"><a href="<?php echo base_url('dashboard') ?>">  -->
+                <!-- <i class="glyphicon glyphicon-dashboard"></i> Dashboard <span class="sr-only">(current)</span></a></li> -->
               
               <li class="dropdown" id="topClassMainNav">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="glyphicon glyphicon-edit"></i> Clases <span class="caret"></span></a>
                 <ul class="dropdown-menu">            
+                  <li id="topNavSection"><a href="<?php echo base_url('section') ?>">Administrar Sede</a></li>                                 
                   <li id="topNavClass"><a href="<?php echo base_url('classes'); ?>">Administrar Clases</a></li>                        
-                  <li id="topNavSection"><a href="<?php echo base_url('section') ?>">Administrar Secciones</a></li>                                 
-                  <li id="topNavSubject"><a href="<?php echo base_url('subject') ?>">Administrar Subject</a></li>           
+                  <!-- <li id="topNavSubject"><a href="<?php echo base_url('subject') ?>">Administrar Subtemas</a></li>            -->
                 </ul>
               </li>
               <li class="dropdown" id="topStudentMainNav">
@@ -72,10 +72,10 @@
                 <ul class="dropdown-menu">
                   <li id="addStudentNav"><a href="<?php echo base_url('student?opt=addst') ?>">Registrar Estudiante</a></li>                        
                   <li id="addBulkStudentNav"><a href="<?php echo base_url('student?opt=bulkst') ?>">Masivo Estudiantes</a></li>                        
-                  <li id="manageStudentNav"><a href="<?php echo base_url('student?opt=mgst') ?>">Administrar Student</a></li>           
+                  <li id="manageStudentNav"><a href="<?php echo base_url('student?opt=mgst') ?>">Administrar Estudiantes</a></li>           
                 </ul>
               </li>
-              <li id="topNavTeacher"><a href="<?php echo base_url('teacher') ?>"> <i class="glyphicon glyphicon-briefcase"></i> Maestro</a></li>
+              <!-- <li id="topNavTeacher"><a href="<?php echo base_url('teacher') ?>"> <i class="glyphicon glyphicon-briefcase"></i> Maestro</a></li> -->
       
               <li class="dropdown" id="topAttendanceMainNav">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-time">

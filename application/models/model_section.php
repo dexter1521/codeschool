@@ -21,6 +21,13 @@ class Model_Section extends CI_Model
 		}
 	}
 
+
+	public function fetchSectionData(){
+			$sql = "SELECT * FROM section";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+	}
+
 	/*
 	*----------------------------------------------
 	* fetches the class's section information

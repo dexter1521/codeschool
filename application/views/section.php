@@ -1,54 +1,40 @@
 <ol class="breadcrumb">
     <li><a href="">Home</a></li>
-    <li class="active">Administrar secciones</li>
+    <li class="active">Administrar Sede</li>
 </ol>
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="panel panel-primary">
 
-            <div class="panel-heading">
-                Clase
-            </div>
+</div>
+<!-- /col-md-4 -->
 
-            <div class="list-group">
-                <?php 
-				if($classData) {
-					$x = 1;
-					foreach ($classData as $value) { 
-					?>
-                <a class="list-group-item classSideBar <?php if($x == 1) { echo 'active'; } ?>"
-                    onclick="getClassSection(<?php echo $value['class_id'] ?>)"
-                    id="classId<?php echo $value['class_id'] ?>">
-                    <?php echo $value['class_name']; ?>(<?php echo $value['numeric_name']; ?>)
-                </a>
-                <?php 
-					$x++;
-					}
-				} 
-				else {
-					?>
-                <a class="list-group-item">No Data</a>
-                <?php
-				}		
-				?>
-            </div>
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Administrar Sede
 
+        <button class="pull-right" type="button" class="btn btn-default" data-toggle="modal" data-target="#addClass"
+                id="addClassModelBtn">
+                <i class="glyphicon glyphicon-plus-sign"></i> Agregar Sede
+            </button>
         </div>
-    </div>
-    <!-- /col-md-4 -->
 
-    <div class="col-md-8">
-        <div class="panel panel-primary">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Administrar secciones</div>
+        <div class="panel-body">
+            <div class="result">
 
-            <div class="panel-body">
-                <div class="result"></div>
+                <table id="managesectionTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre de Sede</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
-    <!-- /col-md-8 -->
+</div>
+<!-- /col-md-8 -->
 </div>
 <!-- /row -->
 
@@ -59,14 +45,14 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Añadir seccion</h4>
+                <h4 class="modal-title">Añadir Sede</h4>
             </div>
             <form action="<?php echo base_url('section/create') ?>" method="post" id="addSectionForm">
                 <div class="modal-body">
                     <div id="add-section-message"></div>
 
                     <div class="form-group">
-                        <label for="sectionName">Nombre de la seccion</label>
+                        <label for="sectionName">Nombre de la Sede</label>
                         <input type="text" class="form-control" id="sectionName" name="sectionName"
                             placeholder="Nombre de la seccion">
                     </div>
@@ -96,7 +82,7 @@
                     </div>
 
 
-                <!--
+                    <!--
                     <div class="form-group">
                         <label for="teacherName">Teacher : </label>
                         <select class="form-control" name="teacherName" id="teacherName">
@@ -206,28 +192,3 @@
 </div><!-- /.modal -->
 
 <script type="text/javascript" src="<?php echo base_url('custom/js/section.js') ?>"></script>
-<script>
-$(document).ready(function() {
-
-    // Inicializar Calendars Picker en el campo de entrada
-
-    $('#FI').calendarsPicker({
-        dateFormat: 'yyyy-mm-dd'
-    });
-    $('#FF').calendarsPicker({
-        dateFormat: 'yyyy-mm-dd'
-    });
-
-    $('#HI').flatpickr({
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "H:i",
-    });
-
-    $('#HF').calendarsPicker({
-        dateFormat: 'yyyy-mm-dd'
-        // timeFormat: 'HH:mm:ss'
-    });
-
-});
-</script>

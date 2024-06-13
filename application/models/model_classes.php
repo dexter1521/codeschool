@@ -16,7 +16,8 @@ class Model_Classes extends CI_Model
 	{
 		$insert_data = array(
 			'class_name' => $this->input->post('className'),
-			'numeric_name' => $this->input->post('numericName')
+			'numeric_name' => $this->input->post('numericName'),
+			'section_id'=> $this->input->post('addsectionname')
 		);
 		$status = $this->db->insert('class', $insert_data);		
 		return ($status === true ? true : false);
@@ -64,9 +65,32 @@ class Model_Classes extends CI_Model
 			return $query->row_array();
 		} 
 		else {
-			$sql = "SELECT * FROM class";
-			$query = $this->db->query($sql);
+			$this->db->select('c.class_id,c.class_name,c.numeric_name,s.section_name');
+			$this->db->from('class c');
+			$this->db->join('section s', 's.section_id = c.section_id');
+			$query = $this->db->get();
 			return $query->result_array();
+		}
+	}
+
+
+	public function DataClass($classId = null){
+
+		if($classId) {
+			// $sql = "SELECT * FROM class WHERE class_id = ?";
+			$this->db->select('c.class_name,c.numeric_name,s.section_name');
+			$this->db->from('class c');
+			$this->db->join('section s', 's.section_id = c.section_id');
+			$this->db->where($classId);
+			$query = $this->db->get()->row_array();
+			return $query();
+		} 
+		else {
+			$this->db->select('c.class_name,c.numeric_name,s.section_name');
+			$this->db->from('class c');
+			$this->db->join('section s', 's.section_id = c.section_id');
+			$query = $this->db->get()->result_array();
+			return $query();
 		}
 	}
 

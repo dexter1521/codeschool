@@ -114,13 +114,12 @@ class Classes extends MY_Controller
 	public function fetchClassData($classId = null)
 	{
 		if($classId) {
-			$classData = $this->model_classes->fetchClassData($classId);
+			$classData = $this->model_classes->DataClass($classId);
 			echo json_encode($classData);
 		}
 		else {
 			$classData = $this->model_classes->fetchClassData();
 			$result = array('data' => array());
-
 			$x = 1;
 			foreach ($classData as $key => $value) {
 
@@ -139,6 +138,7 @@ class Classes extends MY_Controller
 					$x,
 					$value['class_name'],
 					$value['numeric_name'],
+					$value['section_name'],
 					$button
 				);
 				$x++;
