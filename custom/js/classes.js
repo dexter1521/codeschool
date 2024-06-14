@@ -110,13 +110,12 @@ function editClass(class_id = null, valor = null)
 				$("#editHI").val(response.hora_inicio);
 				$("#editHF").val(response.hora_fin);
 
-				$("#L").prop('checked', response.lunes == 1);
-				
-				$("#M").prop('checked', response.martes);
-				$("#MI").prop('checked', response.miercoles);
-				$("#J").prop('checked', response.jueves);
-				$("#V").prop('checked', response.viernes);
-				$("#S").prop('checked', response.sabado);
+				$("#L").prop('checked', response.lunes === "1");
+    $("#M").prop('checked', response.martes === "0");
+    $("#MI").prop('checked', response.miercoles === "1");
+    $("#J").prop('checked', response.jueves === "0");
+    $("#V").prop('checked', response.viernes === "1");
+    $("#S").prop('checked', response.sabado === "0");
 
 
 				// hidden class_id input field

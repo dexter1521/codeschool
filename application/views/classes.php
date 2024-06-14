@@ -262,34 +262,35 @@
                 </div>
 
                 <div class="inline-checkbox">
-                    <input type="checkbox" id="L" name="L" value="1">
-                    <label for="L">Lunes</label>
-                </div>
-                <div class="inline-checkbox">
-                    <input type="checkbox" id="M" name="M" value="1">
-                    <label for="M">Martes</label>
-                </div>
-                <div class="inline-checkbox">
-                    <input type="checkbox" id="MI" name="MI" value="1">
-                    <label for="MI">Miércoles</label>
-                </div>
-                <div class="inline-checkbox">
-                    <input type="checkbox" id="J" name="J" value="1">
-                    <label for="J">Jueves</label>
-                </div>
-                <div class="inline-checkbox">
-                    <input type="checkbox" id="V" name="V" value="1">
-                    <label for="V">Viernes</label>
-                </div>
-                <div class="inline-checkbox">
-                    <input type="checkbox" id="S" name="S" value="1">
-                    <label for="S">Sábado</label>
-                </div>
+    <input type="checkbox" id="L" name="L" value="1">
+    <label for="L">Lunes</label>
+</div>
+<div class="inline-checkbox">
+    <input type="checkbox" id="M" name="M" value="1">
+    <label for="M">Martes</label>
+</div>
+<div class="inline-checkbox">
+    <input type="checkbox" id="MI" name="MI" value="1">
+    <label for="MI">Miércoles</label>
+</div>
+<div class="inline-checkbox">
+    <input type="checkbox" id="J" name="J" value="1">
+    <label for="J">Jueves</label>
+</div>
+<div class="inline-checkbox">
+    <input type="checkbox" id="V" name="V" value="1">
+    <label for="V">Viernes</label>
+</div>
+<div class="inline-checkbox">
+    <input type="checkbox" id="S" name="S" value="1">
+    <label for="S">Sábado</label>
+</div>
+
 
 
                 <div class="modal-footer edit-class-modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success">Guardar cambios</button>
                 </div>
             </form>
         </div><!-- /.modal-content -->
