@@ -10,7 +10,7 @@
         <div class="panel panel-default">
 
             <div class="panel-heading">
-                Sede
+                <a href="<?php echo base_url('classes'); ?>">Sede</a>
             </div>
 
             <div class="list-group">
