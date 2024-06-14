@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Model_Classes extends CI_Model
 {
@@ -17,19 +17,19 @@ class Model_Classes extends CI_Model
 		$insert_data = array(
 			'class_name' => $this->input->post('className'),
 			'numeric_name' => $this->input->post('numericName'),
-			'section_id'=> $this->input->post('addsectionname'),
+			'section_id' => $this->input->post('addsectionname'),
 			'fecha_inicio' => $this->input->post('FI'),
 			'fecha_fin' => $this->input->post('FF'),
 			'hora_inicio' => $this->input->post('HI'),
 			'hora_fin' => $this->input->post('HF'),
-			'lunes'=> $this->input->post('L')? $this->input->post('L') : 0,
-			'martes'=> $this->input->post('M') ? $this->input->post('M') : 0,
-			'miercoles'=> $this->input->post('MI')? $this->input->post('MI') : 0,
-			'jueves'=> $this->input->post('J')? $this->input->post('J') : 0,
-			'viernes'=> $this->input->post('V')? $this->input->post('V') : 0,
-			'sabado'=> $this->input->post('S')? $this->input->post('S') : 0
+			'lunes' => $this->input->post('L') ? $this->input->post('L') : 0,
+			'martes' => $this->input->post('M') ? $this->input->post('M') : 0,
+			'miercoles' => $this->input->post('MI') ? $this->input->post('MI') : 0,
+			'jueves' => $this->input->post('J') ? $this->input->post('J') : 0,
+			'viernes' => $this->input->post('V') ? $this->input->post('V') : 0,
+			'sabado' => $this->input->post('S') ? $this->input->post('S') : 0
 		);
-		$status = $this->db->insert('class', $insert_data);		
+		$status = $this->db->insert('class', $insert_data);
 		return ($status === true ? true : false);
 	}
 
@@ -44,7 +44,7 @@ class Model_Classes extends CI_Model
 		$sql = "SELECT * FROM class WHERE class_name = ?";
 		$query = $this->db->query($sql, array($className));
 
-		return ($query->num_rows() == 1 ? true : false);		
+		return ($query->num_rows() == 1 ? true : false);
 	}
 
 	/*
@@ -58,7 +58,7 @@ class Model_Classes extends CI_Model
 		$sql = "SELECT * FROM class WHERE numeric_name = ?";
 		$query = $this->db->query($sql, array($numericName));
 
-		return ($query->num_rows() == 1 ? true : false);		
+		return ($query->num_rows() == 1 ? true : false);
 	}
 
 	/*
@@ -68,13 +68,12 @@ class Model_Classes extends CI_Model
 	*/
 	public function fetchClassData($classId = null)
 	{
-		if($classId) {
+		if ($classId) {
 			$sql = "SELECT * FROM class WHERE class_id = ?";
 			// $sql = "SELECT * FROM cat_assignment_area WHERE id_assignment = ?";
 			$query = $this->db->query($sql, array($classId));
 			return $query->row_array();
-		} 
-		else {
+		} else {
 			$this->db->select('c.class_id,c.class_name,c.numeric_name,s.section_name');
 			$this->db->from('class c');
 			$this->db->join('section s', 's.section_id = c.section_id');
@@ -83,26 +82,35 @@ class Model_Classes extends CI_Model
 		}
 	}
 
-	public function fetchSectiondataByID($section_id = null){
-		if($section_id) {
+	public function fetchSectiondataByID($section_id = null)
+	{
+		if ($section_id) {
 			$sql = "SELECT * FROM section WHERE section_id = ?";
 			$query = $this->db->query($sql, array($section_id));
 			return $query->result_array();
 		}
-
 	}
 
 
-	public function DataClass($classId = null){
-		if($classId) {
-	
+	public function DataClass($classId = null, $valor = null)
+	{
+
+		//print_r($classId); die();
+		if ($classId && $valor == null) {
+
+			$this->db->from('class c');
+			//$this->db->join('section s', 's.section_id = c.section_id');
+			$this->db->where('c.section_id', $classId);
+			$query = $this->db->get()->result_array();
+			return $query;
+		} else if ($classId > 0 && $valor == 1) {
+			$this->db->select('c.class_name,c.numeric_name,s.section_name,c.fecha_inicio,c.fecha_fin,c.hora_inicio,c.hora_fin,c.lunes,c.martes,c.miercoles,c.jueves,c.viernes,c.sabado');
 			$this->db->from('class c');
 			$this->db->join('section s', 's.section_id = c.section_id');
-			$this->db->where('s.section_id',$classId);
+			$this->db->where('c.class_id', $classId);
 			$query = $this->db->get()->row_array();
 			return $query;
-		} 
-		else {
+		} else {
 			$this->db->select('c.class_name,c.numeric_name,s.section_name');
 			$this->db->from('class c');
 			$this->db->join('section s', 's.section_id = c.section_id');
@@ -111,7 +119,7 @@ class Model_Classes extends CI_Model
 		}
 	}
 
-	
+
 	/*
 	*-----------------------------------------
 	* validate the class name
@@ -124,7 +132,7 @@ class Model_Classes extends CI_Model
 		$sql = "SELECT * FROM class WHERE class_name = ? AND class_id != ?";
 		$query = $this->db->query($sql, array($className, $classId));
 
-		return ($query->num_rows() == 1 ? true : false);		
+		return ($query->num_rows() == 1 ? true : false);
 	}
 
 	/*
@@ -139,10 +147,10 @@ class Model_Classes extends CI_Model
 		$sql = "SELECT * FROM class WHERE numeric_name = ? AND class_id != ?";
 		$query = $this->db->query($sql, array($numericName, $classId));
 
-		return ($query->num_rows() == 1 ? true : false);		
+		return ($query->num_rows() == 1 ? true : false);
 	}
 
-	
+
 	/*
 	*-----------------------------------------
 	* update the class information
@@ -157,9 +165,9 @@ class Model_Classes extends CI_Model
 
 		$this->db->where('class_id', $this->input->post('classId'));
 		$query = $this->db->update('class', $update_data);
-		
-		return ($query === true ? true : false);		
-	}	
+
+		return ($query === true ? true : false);
+	}
 
 	/*
 	*----------------------------------------
@@ -168,10 +176,10 @@ class Model_Classes extends CI_Model
 	*/
 	public function remove($classId = null)
 	{
-		if($classId) {
+		if ($classId) {
 			$this->db->where('class_id', $classId);
 			$result = $this->db->delete('class');
-			return ($result === true ? true: false); 
+			return ($result === true ? true : false);
 		}
 	}
 
@@ -179,12 +187,11 @@ class Model_Classes extends CI_Model
 	*------------------------------------
 	* count total classes information 
 	*------------------------------------
-	*/	
-	public function countTotalClass() 
+	*/
+	public function countTotalClass()
 	{
 		$sql = "SELECT * FROM class";
 		$query = $this->db->query($sql);
 		return $query->num_rows();
 	}
-
 }

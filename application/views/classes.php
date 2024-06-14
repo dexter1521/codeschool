@@ -30,7 +30,7 @@
 				} 
 				else {
 					?>
-                <a class="list-group-item">No Data</a>
+                <a class="list-group-item">Sin datos</a>
                 <?php
 				}		
 				?>
