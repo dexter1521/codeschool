@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-class Classes extends MY_Controller 
+class Classes extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,10 +9,10 @@ class Classes extends MY_Controller
 		$this->isNotLoggedIn();
 
 		// loading the classes model
-		$this->load->model('model_classes');		
+		$this->load->model('model_classes');
 
 		// loading the form validation library
-		$this->load->library('form_validation');		
+		$this->load->library('form_validation');
 	}
 
 	/*
@@ -41,24 +41,22 @@ class Classes extends MY_Controller
 		);
 
 		$this->form_validation->set_rules($validate_data);
-		$this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
+		$this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');
 
-		if($this->form_validation->run() === true) {	
-			$create = $this->model_classes->create();					
-			if($create === true) {
+		if ($this->form_validation->run() === true) {
+			$create = $this->model_classes->create();
+			if ($create === true) {
 				$validator['success'] = true;
 				$validator['messages'] = "Exito al registrar";
-			}
-			else {
+			} else {
 				$validator['success'] = false;
 				$validator['messages'] = "Error insertando en la base de datos";
-			}			
-		} 	
-		else {
+			}
+		} else {
 			$validator['success'] = false;
 			foreach ($_POST as $key => $value) {
 				$validator['messages'][$key] = form_error($key);
-			}			
+			}
 		} // /else
 
 		echo json_encode($validator);
@@ -76,11 +74,10 @@ class Classes extends MY_Controller
 	{
 		$validate = $this->model_classes->validate_classname();
 
-		if($validate === true) {
+		if ($validate === true) {
 			$this->form_validation->set_message('validate_classname', 'El {field} ya existe');
-			return false;						
-		}
-		else {
+			return false;
+		} else {
 			return true;
 		}
 	}
@@ -97,11 +94,10 @@ class Classes extends MY_Controller
 	{
 		$validate = $this->model_classes->validate_numericname();
 
-		if($validate === true) {
+		if ($validate === true) {
 			$this->form_validation->set_message('validate_numericname', 'The {field} already exists');
-			return false;			
-		}
-		else {
+			return false;
+		} else {
 			return true;
 		}
 	}
@@ -111,20 +107,16 @@ class Classes extends MY_Controller
 	* retrieve class name 
 	*------------------------------------
 	*/
-	public function fetchClassData($sectionID = null, $classId = null)
+	public function fetchClassData($classId = null, $valor = null)
 	{
 
 		// $classData = $this->model_classes->DataClass($sectionID);
 		// 	echo json_encode($classData);
 
-		if($sectionID) {
-			$classData = $this->model_classes->DataClass($sectionID);
+		if ($classId > 0 && $valor == 1) {
+			$classData = $this->model_classes->DataClass($classId, $valor);
 			echo json_encode($classData);
-		}else if ($classId){
-			$classData = $this->model_classes->DataClass($classId);
-			echo json_encode($classData);
-		}
-		else {
+		} else {
 			$classData = $this->model_classes->fetchClassData();
 			$result = array('data' => array());
 			$x = 1;
@@ -136,8 +128,8 @@ class Classes extends MY_Controller
 				    Accion <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
-				    <li><a type="button" data-toggle="modal" data-target="#editClassModal" onclick="editClass('.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
-				    <li><a type="button" data-toggle="modal" data-target="#removeClassModal" onclick="removeClass('.$value['class_id'].')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
+				    <li><a type="button" data-toggle="modal" data-target="#editClassModal" onclick="editClass(' . $value['class_id'] . ')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
+				    <li><a type="button" data-toggle="modal" data-target="#removeClassModal" onclick="removeClass(' . $value['class_id'] . ')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
 				  </ul>
 				</div>';
 
@@ -157,19 +149,17 @@ class Classes extends MY_Controller
 
 	// public function check
 
-	public function fecthClassbySection( $sectionID = null){
-		if($sectionID) {
+	public function fecthClassbySection($sectionID = null)
+	{
+		if ($sectionID) {
 			$classData = $this->model_classes->DataClass($sectionID);
 			$sectionData = $this->model_classes->fetchSectiondataByID($sectionID);
-			 var_dump($classData);die();
+			//var_dump($classData);die();
 			// $sectionData = $this->model_section->fetchSectionDataByClass($classId);
 			// $classData = $this->model_classes->fetchClassData($classId);
-			
+
 			$table = '
 
-			<div class="well">
-				Nombre de la Sede : '.$sectionData[0]['section_name'].'
-			</div>
 
 			<div id="messages"></div>
 
@@ -183,44 +173,41 @@ class Classes extends MY_Controller
 			    		<th>#</th>
                                     <th>Nombre de clase</th>
                                     <th>Nombre numerico</th>
-                                    <th>Sede</th>
                                     <th>Accion</th>
 			    	</tr>
 			    </thead>
 			    <tbody>';
-			    	if($classData) {
+			if ($classData) {
 
-			    		foreach ($classData as $key => $value) {
+				foreach ($classData as $key => $value) {
 
-			    			// $teacherData = $this->model_teacher->fetchTeacherData($value['teacher_id']);
-							$x=1;
-			    			$button = '<div class="btn-group">
+					// $teacherData = $this->model_teacher->fetchTeacherData($value['teacher_id']);
+					$x = 1;
+					$button = '<div class="btn-group">
 							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							    Accion <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu">
-							    <li><a type="button" data-toggle="modal" data-target="#editSectionModal" onclick="editSection('.$value['class_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
-							    <li><a type="button" data-toggle="modal" data-target="#removeSectionModal" onclick="removeSection('.$value['class_id'].','.$value['class_id'].')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
+							    <li><a type="button" data-toggle="modal" data-target="#editClassModal" onclick="editClass(' . $value['class_id'] . ', 1)"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
+							    <li><a type="button" data-toggle="modal" data-target="#removeClassModal" onclick="removeClass(' . $value['class_id'] . ')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
 							  </ul>
 							</div>';
 
-				    		$table .= '<tr>
-								<td>'.$x.'</td>
-				    			<td>'.$value['class_name'].'</td>
-				    			<td>'.$value['numeric_name'].'</td>
-								<td>'.$value['section_name'].'</td>
-				    			<td>'.$button.'</td>
+					$table .= '<tr>
+								<td>' . $x . '</td>
+				    			<td>' . $value['class_name'] . '</td>
+				    			<td>' . $value['numeric_name'] . '</td>
+				    			<td>' . $button . '</td>
 				    		</tr>
 				    		';
-							$x++;
-				    	} // /foreach				    	
-			    	} 
-			    	else {
-			    		$table .= '<tr>
-			    			<td colspan="3"><center>No Data Available</center></td>
+					$x++;
+				} // /foreach				    	
+			} else {
+				$table .= '<tr>
+			    			<td colspan="3"><center>Sin datos asociados</center></td>
 			    		</tr>';
-			    	} // /else
-			    $table .= '</tbody>
+			} // /else
+			$table .= '</tbody>
 			</table>
 			';
 			echo $table;
@@ -232,9 +219,9 @@ class Classes extends MY_Controller
 	* edit class information 
 	*------------------------------------
 	*/
-	public function update($classId = null) 
+	public function update($classId = null)
 	{
-		if($classId) {
+		if ($classId) {
 			$validator = array('success' => false, 'messages' => array());
 
 			$validate_data = array(
@@ -251,24 +238,22 @@ class Classes extends MY_Controller
 			);
 
 			$this->form_validation->set_rules($validate_data);
-			$this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
+			$this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');
 
-			if($this->form_validation->run() === true) {	
-				$update = $this->model_classes->update();					
-				if($update == true) {
+			if ($this->form_validation->run() === true) {
+				$update = $this->model_classes->update();
+				if ($update == true) {
 					$validator['success'] = true;
 					$validator['messages'] = "Registro Exitoso!";
-				}
-				else {
+				} else {
 					$validator['success'] = false;
 					$validator['messages'] = "Error mientras se insertaba la información";
-				}			
-			} 	
-			else {
+				}
+			} else {
 				$validator['success'] = false;
 				foreach ($_POST as $key => $value) {
 					$validator['messages'][$key] = form_error($key);
-				}			
+				}
 			} // /else
 
 			echo json_encode($validator);
@@ -286,11 +271,10 @@ class Classes extends MY_Controller
 	{
 		$validate = $this->model_classes->validate_editclassname();
 
-		if($validate === true) {
+		if ($validate === true) {
 			$this->form_validation->set_message('validate_editclassname', 'The {field} already exists');
-			return false;						
-		}
-		else {
+			return false;
+		} else {
 			return true;
 		}
 	}
@@ -306,11 +290,10 @@ class Classes extends MY_Controller
 	{
 		$validate = $this->model_classes->validate_editnumericname();
 
-		if($validate === true) {
+		if ($validate === true) {
 			$this->form_validation->set_message('validate_editnumericname', 'The {field} already exists');
-			return false;			
-		}
-		else {
+			return false;
+		} else {
 			return true;
 		}
 	}
@@ -323,18 +306,16 @@ class Classes extends MY_Controller
 	*/
 	public function remove($classId = null)
 	{
-		if($classId) {
+		if ($classId) {
 			$remove = $this->model_classes->remove($classId);
-			if($remove === true) {
+			if ($remove === true) {
 				$validator['success'] = true;
 				$validator['messages'] = "Eliminado Correctamente!";
-			} 
-			else{
+			} else {
 				$validator['success'] = false;
 				$validator['messages'] = "Error mientras se eliminaba the information";
 			}
 			echo json_encode($validator);
 		}
 	}
-
 }

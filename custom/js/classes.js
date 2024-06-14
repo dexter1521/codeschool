@@ -80,11 +80,11 @@ $(document).ready(function() {
 
 }); // /document
 
-function editClass(class_id = null)
+function editClass(class_id = null, valor = null)
 {	
 
 
-	if(class_id) {
+	if(class_id > 0 && valor == 1) {
 		/*Clear the form*/
 		// $("#editClassModal")[0].reset();
 
@@ -96,27 +96,22 @@ function editClass(class_id = null)
 		// $('#editClassModal').modal('show');
 
 		$.ajax({
-			url: base_url + 'classes/fetchClassData/'+class_id,
+			url: base_url + 'classes/fetchClassData/'+class_id+'/'+valor,
 			type: 'post',
 			dataType: 'json',
 			success:function(response) {
 				// console.log(response);
 
 				$("#editClassName").val(response.class_name);
-
 				$("#editNumericName").val(response.numeric_name);
-
 				$("#sectionname").val(response.sectionID);
-
 				$("#editFI").val(response.fecha_inicio);
-
 				$("#editFF").val(response.fecha_fin);
-
 				$("#editHI").val(response.hora_inicio);
-
 				$("#editHF").val(response.hora_fin);
 
-				$("#L").prop('checked', response.lunes);
+				$("#L").prop('checked', response.lunes == 1);
+				
 				$("#M").prop('checked', response.martes);
 				$("#MI").prop('checked', response.miercoles);
 				$("#J").prop('checked', response.jueves);
@@ -186,13 +181,13 @@ function editClass(class_id = null)
 
 function getClassSection(sectionID = null) 
 {	
+	
 	if(sectionID) {
 		$(".list-group-item").removeClass('active');
 		$("#sectionID"+sectionID).addClass('active');
 		$.ajax({
 			// url: base_url + 'Classes/fetchClassData/' + sectionID,
 			url: base_url + 'Classes/fecthClassbySection/' + sectionID,
-
 			type: 'post',		
 			success:function(response) {
 				$(".result").html(response);
