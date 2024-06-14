@@ -129,8 +129,8 @@ class Classes extends MY_Controller
 				    Accion <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
-				    <li><a type="button" data-toggle="modal" data-target="#editClassModal" onclick="editClass(' . $value['class_id'] . ')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
-				    <li><a type="button" data-toggle="modal" data-target="#removeClassModal" onclick="removeClass(' . $value['class_id'] . ')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
+				    <li><a type="button" class="btn btn-warning" data-toggle="modal" data-target="#editClassModal" onclick="editClass(' . $value['class_id'] . ',1)"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
+				    <li><a type="button" class = "btn btn-danger" data-toggle="modal" data-target="#removeClassModal" onclick="removeClass(' . $value['class_id'] . ')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
 				  </ul>
 				</div>';
 
@@ -189,8 +189,8 @@ class Classes extends MY_Controller
 							    Accion <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu">
-							    <li><a type="button" data-toggle="modal" data-target="#editClassModal" onclick="editClass(' . $value['class_id'] . ', 1)"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
-							    <li><a type="button" data-toggle="modal" data-target="#removeClassModal" onclick="removeClass(' . $value['class_id'] . ')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
+							    <li><a type="button" class="btn btn-warning"  data-toggle="modal" data-target="#editClassModal" onclick="editClass(' . $value['class_id'] . ', 1)"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
+							    <li><a type="button"  class="btn btn-danger" data-toggle="modal" data-target="#removeClassModal" onclick="removeClass(' . $value['class_id'] . ')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>		    
 							  </ul>
 							</div>';
 
