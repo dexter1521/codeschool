@@ -109,6 +109,7 @@ class Classes extends MY_Controller
 	*/
 	public function fetchClassData($classId = null, $valor = null)
 	{
+		// print_r($valor); die();
 
 		// $classData = $this->model_classes->DataClass($sectionID);
 		// 	echo json_encode($classData);
@@ -228,12 +229,12 @@ class Classes extends MY_Controller
 				array(
 					'field' => 'editClassName',
 					'label' => 'Class Name',
-					'rules' => 'required|callback_validate_editclassname'
+					'rules' => 'required'
 				),
 				array(
 					'field' => 'editNumericName',
 					'label' => 'Numeric Name',
-					'rules' => 'required|callback_validate_editnumericname'
+					'rules' => 'required'
 				)
 			);
 

@@ -92,19 +92,22 @@
                 </button>
                 <h4 class="modal-title">Agregar clase</h4>
             </div>
-            <form class="form-horizontal" method="post" id="createClassForm" action="<?php echo base_url() . 'classes/create' ?>">
+            <form class="form-horizontal" method="post" id="createClassForm"
+                action="<?php echo base_url() . 'classes/create' ?>">
                 <div class="modal-body">
                     <div id="add-class-messages"></div>
                     <div class="form-group">
                         <label for="className" class="col-sm-4 control-label">Nombre de clase:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="className" name="className" placeholder="Nombre de clase">
+                            <input type="text" class="form-control" id="className" name="className"
+                                placeholder="Nombre de clase">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="numericName" class="col-sm-4 control-label">Nombre numérico:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="numericName" name="numericName" placeholder="Nombre numérico">
+                            <input type="text" class="form-control" id="numericName" name="numericName"
+                                placeholder="Nombre numérico">
                         </div>
                     </div>
                     <div class="form-group">
@@ -113,7 +116,8 @@
                             <select class="form-control" name="addsectionname" id="addsectionname">
                                 <option value="">Selecciona Sede</option>
                                 <?php foreach ($sectionData as $key => $value) { ?>
-                                    <option value="<?php echo $value['section_id'] ?>"><?php echo $value['section_name'] ?></option>
+                                <option value="<?php echo $value['section_id'] ?>"><?php echo $value['section_name'] ?>
+                                </option>
                                 <?php } // /foreach ?>
                             </select>
                         </div>
@@ -121,29 +125,33 @@
                     <div class="form-group">
                         <label for="FI" class="col-sm-4 control-label">Fecha de inicio:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="FI" name="FI" placeholder="Fecha de inicio" autocomplete="off">
+                            <input type="text" class="form-control" id="FI" name="FI" placeholder="Fecha de inicio"
+                                autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="FF" class="col-sm-4 control-label">Fecha de fin:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="FF" name="FF" placeholder="Fecha de fin" autocomplete="off">
+                            <input type="text" class="form-control" id="FF" name="FF" placeholder="Fecha de fin"
+                                autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="HI" class="col-sm-4 control-label">Hora de inicio:</label>
                         <div class="col-sm-8">
-                            <input type="time" class="form-control" id="HI" name="HI" placeholder="Hora de inicio" autocomplete="off">
+                            <input type="time" class="form-control" id="HI" name="HI" placeholder="Hora de inicio"
+                                autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="HF" class="col-sm-4 control-label">Hora de fin:</label>
                         <div class="col-sm-8">
-                            <input type="time" class="form-control" id="HF" name="HF" placeholder="Hora de fin" autocomplete="off">
+                            <input type="time" class="form-control" id="HF" name="HF" placeholder="Hora de fin"
+                                autocomplete="off">
                         </div>
                     </div>
                     <div class="inline-checkbox">
-                        <input type="checkbox" id="L" name="L" value="1">
+                        <input type="checkbox" id="L" name="L" value="1" >
                         <label for="L">Lunes</label>
                     </div>
                     <div class="inline-checkbox">
@@ -185,6 +193,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Editar clase</h4>
+                <input type="hidden" id="classID" name="classID" value="">
             </div>
 
             <form class="form-horizontal" method="post" id="editClassForm"
@@ -211,9 +220,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="sectionname" class="col-sm-4 control-label">Sede</label>
+                    <label for="editsectionname" class="col-sm-4 control-label">Sede</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="sectionname" id="sectionname">
+                        <select class="form-control" name="editsectionname" id="editsectionname">
                             <option value="">Selecciona Sede</option>
                             <?php foreach ($sectionData as $key => $value) { ?>
                             <option value="<?php echo $value['section_id'] ?>">
@@ -262,29 +271,29 @@
                 </div>
 
                 <div class="inline-checkbox">
-    <input type="checkbox" id="L" name="L" value="1">
-    <label for="L">Lunes</label>
-</div>
-<div class="inline-checkbox">
-    <input type="checkbox" id="M" name="M" value="1">
-    <label for="M">Martes</label>
-</div>
-<div class="inline-checkbox">
-    <input type="checkbox" id="MI" name="MI" value="1">
-    <label for="MI">Miércoles</label>
-</div>
-<div class="inline-checkbox">
-    <input type="checkbox" id="J" name="J" value="1">
-    <label for="J">Jueves</label>
-</div>
-<div class="inline-checkbox">
-    <input type="checkbox" id="V" name="V" value="1">
-    <label for="V">Viernes</label>
-</div>
-<div class="inline-checkbox">
-    <input type="checkbox" id="S" name="S" value="1">
-    <label for="S">Sábado</label>
-</div>
+                    <input type="checkbox" id="editL" name="editL" value="1">
+                    <label for="editL">Lunes</label>
+                </div>
+                <div class="inline-checkbox">
+                    <input type="checkbox" id="editM" name="editM" value="1">
+                    <label for="editM">Martes</label>
+                </div>
+                <div class="inline-checkbox">
+                    <input type="checkbox" id="editMI" name="editMI" value="1">
+                    <label for="editMI">Miércoles</label>
+                </div>
+                <div class="inline-checkbox">
+                    <input type="checkbox" id="editJ" name="editJ" value="1">
+                    <label for="editJ">Jueves</label>
+                </div>
+                <div class="inline-checkbox">
+                    <input type="checkbox" id="editV" name="editV" value="1">
+                    <label for="editV">Viernes</label>
+                </div>
+                <div class="inline-checkbox">
+                    <input type="checkbox" id="editS" name="editS" value="1">
+                    <label for="editS">Sábado</label>
+                </div>
 
 
 

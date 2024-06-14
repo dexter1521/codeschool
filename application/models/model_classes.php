@@ -95,16 +95,14 @@ class Model_Classes extends CI_Model
 	public function DataClass($classId = null, $valor = null)
 	{
 
-		//print_r($classId); die();
 		if ($classId && $valor == null) {
-
 			$this->db->from('class c');
 			//$this->db->join('section s', 's.section_id = c.section_id');
 			$this->db->where('c.section_id', $classId);
 			$query = $this->db->get()->result_array();
 			return $query;
 		} else if ($classId > 0 && $valor == 1) {
-			$this->db->select('c.class_name,c.numeric_name,s.section_name,c.fecha_inicio,c.fecha_fin,c.hora_inicio,c.hora_fin,c.lunes,c.martes,c.miercoles,c.jueves,c.viernes,c.sabado');
+			$this->db->select('c.class_id,c.class_name,c.numeric_name,c.section_id,s.section_name,c.fecha_inicio,c.fecha_fin,c.hora_inicio,c.hora_fin,c.lunes,c.martes,c.miercoles,c.jueves,c.viernes,c.sabado');
 			$this->db->from('class c');
 			$this->db->join('section s', 's.section_id = c.section_id');
 			$this->db->where('c.class_id', $classId);
@@ -160,12 +158,23 @@ class Model_Classes extends CI_Model
 	{
 		$update_data = array(
 			'class_name' => $this->input->post('editClassName'),
-			'numeric_name' => $this->input->post('editNumericName')
+			'numeric_name' => $this->input->post('editNumericName'),
+			'section_id' => $this->input->post('editsectionname'),
+			'fecha_inicio' => $this->input->post('editFI'),
+			'fecha_fin' => $this->input->post('editFF'),
+			'hora_inicio' => $this->input->post('editHI'),
+			'hora_fin' => $this->input->post('editHF'),
+			'lunes' => $this->input->post('editL') ? $this->input->post('editL') : 0,
+			'martes' => $this->input->post('editM') ? $this->input->post('editM') : 0,
+			'miercoles' => $this->input->post('editMI') ? $this->input->post('editMI') : 0,
+			'jueves' => $this->input->post('editJ') ? $this->input->post('editJ') : 0,
+			'viernes' => $this->input->post('editV') ? $this->input->post('editV') : 0,
+			'sabado' => $this->input->post('editS') ? $this->input->post('editS') : 0
 		);
+
 
 		$this->db->where('class_id', $this->input->post('classId'));
 		$query = $this->db->update('class', $update_data);
-
 		return ($query === true ? true : false);
 	}
 
