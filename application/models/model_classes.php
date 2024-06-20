@@ -29,8 +29,25 @@ class Model_Classes extends CI_Model
 			'viernes' => $this->input->post('V') ? $this->input->post('V') : 0,
 			'sabado' => $this->input->post('S') ? $this->input->post('S') : 0
 		);
-		$status = $this->db->insert('class', $insert_data);
-		return ($status === true ? true : false);
+		$section_id = $this->input->post('addsectionname');
+		$fecha_inicio = $this->input->post('FI');
+		$fecha_fin = $this->input->post('FF');
+		$indexdata[0]=$insert_data;
+
+		$obtener_class = $this->obtener_clases($section_id, $fecha_inicio, $fecha_fin);
+
+		if($this->clasesSolapadas($indexdata,$obtener_class)){
+			print_r("las clases se solapan, puto"); die();
+			return false;
+
+			// return $message = "Las clases se solapan";
+		}else{
+			// die();
+			$status = $this->db->insert('class', $insert_data);
+			return ($status === true ? true : false);
+		}
+		// $status = $this->db->insert('class', $insert_data);
+		// return ($status === true ? true : false);
 	}
 
 	/*
@@ -66,6 +83,7 @@ class Model_Classes extends CI_Model
 	* fetch class data
 	*----------------------------------------
 	*/
+
 	public function fetchClassData($classId = null)
 	{
 		if ($classId) {
@@ -203,4 +221,118 @@ class Model_Classes extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->num_rows();
 	}
+
+	public function validad_fechas($lunes, $martes, $miercoles, $jueves, $viernes, $sabado, $fecha_inicio, $fecha_fin, $hora_inicio, $hora_fin){
+
+		$this->db->from('class');
+		$this->db->where('fecha_inicio', $this->input->post('FI'));
+		$this->db->where('fecha_fin', $this->input->post('FF'));
+		$this->db->where('hora_inicio', $this->input->post('HI'));
+		$this->db->where('hora_fin', $this->input->post('HF'));
+
+		if($lunes == 1){
+			$this->db->where('lunes', $this->input->post('L'));
+		}
+		if($martes == 1){
+			$this->db->where('martes', $this->input->post('M'));
+		}
+		if($miercoles == 1){
+			$this->db->where('miercoles', $this->input->post('MI'));
+		}
+		if($jueves == 1){
+			$this->db->where('jueves', $this->input->post('J'));
+		}
+		if($viernes == 1){
+			$this->db->where('viernes', $this->input->post('V'));
+		}
+		if($sabado == 1){
+			$this->db->where('sabado', $this->input->post('S'));
+		}
+
+
+		$query = $this->db->get();
+		return $query->num_rows();
+
+	}
+
+
+	private function obtener_clases($section_id, $fecha_inicio, $fecha_fin) {
+
+        $this->db->where('section_id', $section_id);
+        $this->db->where('fecha_fin >=', $fecha_inicio);
+        $this->db->where('fecha_inicio <=', $fecha_fin);
+        $query = $this->db->get('class');
+        return $query->result_array();
+    }
+
+	// private function clasesSolapadas($claseNueva,$clasesExistentes){
+		
+	// 	// print_r($clasesExistentes); die();
+	// 	$dias_nuevas = $this->extraer_dias_activos($clasesExistentes);
+		
+	// 	foreach($clasesExistentes as $clase => $value){
+	// 		print_r($clasesExistentes); die();
+	// 		$diasClase = explode(',', $clase['dias']);
+	// 		$dias_nuevas = explode(',', $claseNueva['dias']);
+		
+	// 		if(array_intersect($diasClase, $dias_nuevas)){
+	// 			if (!($claseNueva['hora_fin'] <= $clase['hora_inicio'] || $claseNueva['hora_inicio'] >= $clase['hora_fin'])) {
+	// 				return true; 
+	// 			}
+	// 		}
+	// 	}
+	// 	return false; 
+	// }
+
+	private function clasesSolapadas($claseNuevaArray, $clasesExistentes) {
+		// Asumiendo que $claseNuevaArray contiene un solo elemento que es la nueva clase
+		$claseNueva = $claseNuevaArray[0];
+	
+		// Obtener los días activos de la nueva clase
+		$dias_nuevas = $this->extraer_dias_activos($claseNueva);
+	
+		// Iterar sobre las clases existentes
+		foreach ($clasesExistentes as $clase) {
+			// Obtener los días activos de la clase existente
+			$diasClase = $this->extraer_dias_activos($clase);
+	
+			// Verificar intersección de días
+			if (array_intersect($diasClase, $dias_nuevas)) {
+				// Verificar solapamiento de horarios
+				if (!($claseNueva['hora_fin'] <= $clase['hora_inicio'] || $claseNueva['hora_inicio'] >= $clase['hora_fin'])) {
+					return true; // Hay solapamiento
+				}
+			}
+		}
+	
+		return false; // No hay solapamiento
+	}
+	
+
+
+	private function extraer_dias_activos($clase) {
+		$dias_activos = [];
+		$dias_semana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+	
+		foreach ($dias_semana as $dia) {
+			if (isset($clase[$dia]) && $clase[$dia] == 1) {
+				$dias_activos[] = $dia;
+			}
+		}
+	
+		return $dias_activos;
+	}
+	
+	// private function extraer_dias_activos($clase) {
+	// 	// print_r($clase); die();
+    //      $dias_activos = [];
+   	// 	 $dias_semana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+    // 	foreach ($dias_semana as $key => $dia) {
+	// 		if (isset($clase[$key][$dia]) && $clase[$key][$dia] == 1) {
+	// 			$dias_activos[] = $dia;
+	// 			// print_r($dias_activos); die();
+    //     	}
+    // 	}
+    // 	return $dias_activos;
+    // }
 }

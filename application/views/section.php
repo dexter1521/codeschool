@@ -16,7 +16,7 @@
         </div>
 
         <div class="panel-body">
-            <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addSectionModal" id="addClassModelBtn">
+            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#addSectionModal" id="addClassModelBtn">
                 <i class="glyphicon glyphicon-plus-sign">Agregar Sede</i>
             </button>
 

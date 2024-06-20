@@ -52,6 +52,8 @@ $(document).ready(function () {
 							response.messages +
 							'</div>');
 
+						$('#addClass').modal('hide');
+
 						manageClassTable.ajax.reload(null, false);
 
 						$("#createClassForm")[0].reset();
@@ -124,7 +126,7 @@ function editClass(class_id = null, valor = null) {
 					$('#edit	S').attr('checked', true);
 				}
 
-			
+
 
 				// hidden class_id input field
 				$(".edit-class-modal-footer").append('<input type="hidden" name="classId" id="classId" value="' + response.class_id + '" />');

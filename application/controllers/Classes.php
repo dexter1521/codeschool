@@ -45,6 +45,7 @@ class Classes extends MY_Controller
 
 		if ($this->form_validation->run() === true) {
 			$create = $this->model_classes->create();
+
 			if ($create === true) {
 				$validator['success'] = true;
 				$validator['messages'] = "Exito al registrar";
@@ -52,6 +53,7 @@ class Classes extends MY_Controller
 				$validator['success'] = false;
 				$validator['messages'] = "Error insertando en la base de datos";
 			}
+			
 		} else {
 			$validator['success'] = false;
 			foreach ($_POST as $key => $value) {

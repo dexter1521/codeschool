@@ -134,14 +134,20 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
                             <?php } // /forwach ?>
                         </select>
                     </div>
-                    <!--
-            <div class="form-group">
-              <label for="sectionName">Section</label>
-              <select class="form-control" name="sectionName" id="sectionName">
-                <option value="">Select Class</option>
-              </select>
-            </div> 
-            -->
+
+                    <div class="form-group">
+                        <label for="sectionName">Seleccionar sede</label>
+                        <select class="form-control" name="sectionName" id="sectionName">
+                            <option value="">Selecciona sede</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sectionName">Selecciona una Clase</label>
+                        <select class="form-control" name="sectionName" id="sectionName">
+                            <option value="">Selecciona clase</option>
+                        </select>
+                    </div>
 
                 </fieldset>
 
@@ -203,7 +209,7 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
                 <div id="collapse1" class="panel-collapse collapse">
                     <form action="student/createBulk" method="post" id="createBulkForm">
 
-                       
+
                         <br /> <br />
 
                         <table class="table" id="addBulkStudentTable">
