@@ -45,7 +45,7 @@ $(document).ready(function () {
 				data: form.serialize(),
 				dataType: 'json',
 				success: function (response) {
-					if (response.success == true) {
+					if (response.success == 1) {
 
 						$("#add-class-messages").html('<div class="alert alert-success alert-dismissible" role="alert">' +
 							'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
@@ -60,7 +60,7 @@ $(document).ready(function () {
 						$(".form-group").removeClass('has-error').removeClass('has-success');
 						$(".text-danger").remove();
 					}
-					else {
+					else if(response.success == 2){
 						$.each(response.messages, function (index, value) {
 							var key = $("#" + index);
 							key.closest('.form-group')
@@ -71,6 +71,8 @@ $(document).ready(function () {
 							key.after(value);
 
 						});
+					}else if(response.success == 3){
+						alert(response.messages);
 					}
 				} // /success
 			}); // /ajax

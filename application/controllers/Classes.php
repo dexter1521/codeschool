@@ -46,19 +46,26 @@ class Classes extends MY_Controller
 		if ($this->form_validation->run() === true) {
 			$create = $this->model_classes->create();
 
-			if ($create === true) {
-				$validator['success'] = true;
+
+
+
+			if ($create['status'] === 1) {
+				$validator['success'] = 1;
 				$validator['messages'] = "Exito al registrar";
-			} else {
-				$validator['success'] = false;
+			} else if( $create['status'] == 2) {
+				$validator['success'] = 2;
 				$validator['messages'] = "Error insertando en la base de datos";
+			}else if ($create['status'] == 3) {
+				$validator['success'] = 3;
+				$validator['messages'] = "las clases se solapan, porfavor escoger un dia u hora diferente";
 			}
 			
 		} else {
-			$validator['success'] = false;
+			$validator['success'] = 2;
 			foreach ($_POST as $key => $value) {
 				$validator['messages'][$key] = form_error($key);
 			}
+			
 		} // /else
 
 		echo json_encode($validator);

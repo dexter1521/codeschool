@@ -37,14 +37,21 @@ class Model_Classes extends CI_Model
 		$obtener_class = $this->obtener_clases($section_id, $fecha_inicio, $fecha_fin);
 
 		if($this->clasesSolapadas($indexdata,$obtener_class)){
-			print_r("las clases se solapan, puto"); die();
-			return false;
 
-			// return $message = "Las clases se solapan";
+			$respuesta = array(
+				'status' => 3,
+				'message' => 'Las clases se solapan, por favor selecciona otro dia'
+			);
+			return $respuesta;
 		}else{
-			// die();
 			$status = $this->db->insert('class', $insert_data);
-			return ($status === true ? true : false);
+
+			$respuesta = array(
+				'status' => $status === true ? 1 : 2,
+				'message' => 'Clase registrada con exito'
+			);
+			
+			return $respuesta;
 		}
 		// $status = $this->db->insert('class', $insert_data);
 		// return ($status === true ? true : false);
