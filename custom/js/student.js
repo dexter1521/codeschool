@@ -62,9 +62,9 @@ $(document).ready(function () {
 		});
 
 		// change on the class
-		$("#className").unbind('change').bind('change', function () {
+		$("#sectionName").unbind('change').bind('change', function () {
 			var class_id = $(this).val();
-			$("#sectionName").load(base_url + 'student/fetchClassSection/' + class_id);
+			$("#className").load(base_url + 'student/fetchSectionClass/' + class_id);
 		});
 
 

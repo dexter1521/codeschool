@@ -125,8 +125,8 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
             -->
 
                     <div class="form-group">
-                        <label for="className">Area de adscripción</label>
-                        <select class="form-control" name="className" id="className">
+                        <label for="adscriptionName">Area de adscripción</label>
+                        <select class="form-control" name="adscriptionName" id="adscriptionName">
                             <option value="">Selecciona</option>
                             <?php foreach ($classData1 as $key => $value) { ?>
                             <option value="<?php echo $value['id_assignment'] ?>">
@@ -138,14 +138,22 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
                     <div class="form-group">
                         <label for="sectionName">Seleccionar sede</label>
                         <select class="form-control" name="sectionName" id="sectionName">
-                            <option value="">Selecciona sede</option>
+                            <option value="">Selecciona</option>
+                            <?php foreach ($sectionData as $key => $value) { ?>
+                            <option value="<?php echo $value['section_id'] ?>">
+                                <?php echo $value['section_name'] ?></option>
+                            <?php } // /forwach ?>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="sectionName">Selecciona una Clase</label>
-                        <select class="form-control" name="sectionName" id="sectionName">
-                            <option value="">Selecciona clase</option>
+                        <label for="className">Selecciona una Clase</label>
+                        <select class="form-control" name="className" id="className">
+                            <option value="">Selecciona</option>
+                            <?php foreach ($classData2 as $key => $value) { ?>
+                            <option value="<?php echo $value['class_id'] ?>">
+                                <?php echo $value['class_name'] ?></option>
+                            <?php } // /forwach ?>
                         </select>
                     </div>
 

@@ -107,6 +107,20 @@ class Model_Classes extends CI_Model
 		}
 	}
 
+	public function fetchClassDataStudents($section_id = null)
+	{
+		if ($section_id) {
+			$sql = "SELECT * FROM class WHERE section_id = ?";
+			$query = $this->db->query($sql, array($section_id));
+			return $query->result_array();
+		}else{
+			$sql = "SELECT * FROM class";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+		}
+
+	}
+
 	public function fetchSectiondataByID($section_id = null)
 	{
 		if ($section_id) {

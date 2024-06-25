@@ -130,6 +130,28 @@ class Student extends MY_Controller
 		} // /if
 	}
 
+	public function fetchSectionClass($sectionID = null){
+		
+		if($sectionID) {
+			$sectionData = $this->model_section->fetchclassBySection($sectionID);
+			// print_r($sectionData); die();	
+
+
+			if($sectionData) {
+				foreach ($sectionData as $key => $value) {
+					$option .= '<option value="'.$value['class_id'].'">'.$value['class_name'].'</option>';
+				} // /foreach
+			}
+			else {
+				$option = '<option value="">No Data</option>';
+			} // /else empty section
+
+			echo $option;
+			
+		}
+
+	}
+
 	/*
 	*------------------------------------
 	* fetch the student's information
@@ -152,8 +174,17 @@ class Student extends MY_Controller
 	public function getClassSectionTab($classId = null)
 	{
 		if($classId) {
+
 			$sectionData = $this->model_section->fetchSectionDataByClass($classId);	
-			$classData = $this->model_student->fetchStudentData($classId);	/////////////								
+			$classData = $this->model_student->fetchStudentData($classId);	/////////////
+			// print_r($classData); die();	
+			$datosSeccion = $this->model_section->fetchsectionDataByclass1($classId);
+			$datosClase = $this->model_student->fetchStudentData1($classId);
+			
+			print_r($datosClase); die();
+
+
+
 			$tab = array();			
 			$tab['sectionData'] = $sectionData;			
 

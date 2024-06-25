@@ -21,15 +21,25 @@ class Model_Student extends CI_Model
 
 		$insert_data = array(
 			'no_empleado' => $this->input->post('nempelado'),
-			'class_id' 		=> $this->input->post('className'),
+			// 'class_id' 		=> $this->input->post('className'),
 			'fname'			=> $this->input->post('fname'),
 			'image'			=> $img_url,
 			'contact'		=> $this->input->post('contact'),
 			'email'			=> $this->input->post('email'),
+			'id_assignment'=> $this->input->post('adscriptionName'),
 		);
+
+		$status = $this->db->insert('student', $insert_data);	
+		$lastID= $this->db->insert_id();
+		$insertRelacional = array(
+			'id_student' => $lastID,
+			'classID' => $this->input->post('className'),
+			'sectionID' => $this->input->post('sectionName'),
+		);
+		
+		$relacional = $this->db->insert('student_section_class', $insertRelacional);
 		// var_dump($insert_data); die();
 
-		$status = $this->db->insert('student', $insert_data);		
 		return ($status == true ? true : false);
 	}
 
@@ -40,10 +50,10 @@ class Model_Student extends CI_Model
 	*/
 	public function fetchStudentData($studentId = null)
 	{
-		if($classId) {
+		if($studentId) {
 			// $sql = "SELECT * FROM class WHERE class_id = ?";
 			$sql = "SELECT * FROM cat_assignment_area WHERE id_assignment = ?";
-			$query = $this->db->query($sql, array($classId));
+			$query = $this->db->query($sql, array($studentId));
 			return $query->row_array();
 		} 
 		else {
@@ -52,6 +62,42 @@ class Model_Student extends CI_Model
 			return $query->result_array();
 		}	
 	}
+
+	public function fetchStudentData1($classId = null)
+	{
+		if($classId) {
+			$this->db->select('scc.student_id, s.fname,c.class_name');
+			$this->db->join('student s' , 's.student_id = scc.student_id');
+			$this->db->join('class c' , 'c.class_id = scc.class_id');
+			$this->db->from('student_section_class ssc');
+			$this->db->where('scc.class_id', $classId);
+			$query = $this->db->get();
+			return $query->result_array();			
+
+		}
+
+
+		$this->db->select('d.id, d.demanda, d.fecha_resolucion,');
+        $this->db->select('cd.nombre_distrito AS distrito,');
+        $this->db->select('cm.descripcion AS materia,');
+        $this->db->select('cj.nombre_juzgado AS juzgado,');
+        $this->db->select('ctp.nombre_juicio AS tipo_juicio,');
+        $this->db->select('ce.descripcion AS estatus,');
+        $this->db->from('demanda d');
+        $this->db->join('cat_distritos cd', 'cd.id_distrito = d.id');
+        $this->db->join('cat_materia cm', 'cm.id = d.id_materia');
+        $this->db->join('cat_juzgados cj', 'cj.id_juzgado = d.id_juzgado');
+        $this->db->join('cat_tipodejuicio ctp', 'ctp.id_tipodejuicio = d.id_juicio');
+        $this->db->join('cat_estatus ce', 'ce.id_estatus = d.id_estatus');
+        $this->db->where('d.activo', 1); // Filtra por registros con activo igual a 1
+        $rstQuery = $this->db->get();
+        return $rstQuery->result_array();
+
+
+	}
+
+
+	
 
 	public function fetchClassData($classId = null)
 	{

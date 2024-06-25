@@ -21,6 +21,27 @@ class Model_Section extends CI_Model
 		}
 	}
 
+	public function fetchclassBySection($sectionId = null)
+	{
+		if ($sectionId) {
+			$sql = "SELECT * FROM class WHERE section_id = ?";
+			$query = $this->db->query($sql, array($sectionId));
+			return $query->result_array();
+		}
+	}
+
+	public function fetchsectionDataByclass1($classId = null)
+	{
+		if ($classId) {
+			$this->db->select('*');
+			$this->db->from('section');
+			$this->db->where('class_id', $classId);
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+		
+	}
+
 
 	public function fetchSectionData()
 	{

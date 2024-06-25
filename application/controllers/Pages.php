@@ -23,6 +23,7 @@ class Pages extends MY_Controller
 
             $data['classData'] = $this->model_classes->fetchClassData();
             $data['classData1'] = $this->model_student->fetchClassData();
+            $data['classData2'] = $this->model_classes->fetchClassDataStudents();
             $data['sectionData'] = $this->model_section->fetchSectionData();
 
 
