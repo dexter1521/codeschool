@@ -32,9 +32,9 @@ class Model_Student extends CI_Model
 		$status = $this->db->insert('student', $insert_data);	
 		$lastID= $this->db->insert_id();
 		$insertRelacional = array(
-			'id_student' => $lastID,
-			'classID' => $this->input->post('className'),
-			'sectionID' => $this->input->post('sectionName'),
+			'student_id' => $lastID,
+			'class_id' => $this->input->post('className'),
+			'section_id' => $this->input->post('sectionName'),
 		);
 		
 		$relacional = $this->db->insert('student_section_class', $insertRelacional);
