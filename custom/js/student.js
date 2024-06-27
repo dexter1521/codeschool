@@ -10,22 +10,22 @@ $(document).ready(function () {
 		var file = $('#csv_file')[0].files[0];
 
 		// if (file) {
-			// alert('Archivo seleccionado');
-			formData.append('csv_file', file);
+		// alert('Archivo seleccionado');
+		formData.append('csv_file', file);
 
-			$.ajax({
-				url: base_url + 'student/SubirCSV', // URL de tu controlador y método
-				type: 'POST',
-				data: formData,
-				contentType: false,
-				processData: false,
-				success: function (response) {
-					alert(response);
-				},
-				error: function (xhr, status, error) {
-					console.error('Ocurrió un error:', error);
-				}
-			});
+		$.ajax({
+			url: base_url + 'student/SubirCSV', // URL de tu controlador y método
+			type: 'POST',
+			data: formData,
+			contentType: false,
+			processData: false,
+			success: function (response) {
+				alert(response);
+			},
+			error: function (xhr, status, error) {
+				console.error('Ocurrió un error:', error);
+			}
+		});
 		// } else {
 		// 	alert('Por favor, selecciona un archivo CSV.');
 		// }
@@ -184,7 +184,6 @@ $(document).ready(function () {
 	} // /add bulk student
 	else if (request == 'mgst') {
 		$("#manageStudentNav").addClass('active');
-
 		var classSideBar = $('.classSideBar').attr('id');
 		var class_id = classSideBar.substring(7);
 
@@ -209,11 +208,14 @@ function getClassSection(classId = null) {
 			dataType: 'json',
 			success: function (response) {
 				$("#result").html(response.html);
-
 				manageStudentTable = $("#manageStudentTable").DataTable({
 					'ajax': 'student/fetchStudentByClass/' + classId,
 					'order': []
 				});
+
+
+
+
 
 				/*
 				*-------------------------------------
@@ -223,15 +225,35 @@ function getClassSection(classId = null) {
 				* the object 
 				*-------------------------------------
 				*/
-				$.each(response.sectionData, function (index, value) {
-					index += 1;
-					studentSectionTable['studentTable' + index] = $("#manageStudentTable" + index).DataTable({
-						'ajax': 'student/fetchStudentByClassAndSection/' + value.class_id + '/' + value.section_id,
-						'order': []
-					});
-				});
+				// $.each(response.sectionData, function (index, value) {
+				// 	index += 1;
+				// 	studentSectionTable['studentTable' + index] = $("#manageStudentTable" + index).DataTable({
+				// 		'ajax': 'student/fetchStudentByClassAndSection/' + value.class_id + '/' + value.section_id,
+				// 		'order': []
+				// 	});
+				// });
 			} // /success
 		}); // /ajax		
+	}
+}
+
+function getTablaEstudiantes(classID = null) {
+	var classId = classID;
+	if (classID) {
+		$(".list-group-item").removeClass('active');
+		$("#classId" + classId).addClass('active');
+		$.ajax({
+			url: base_url + 'Student/getStudentsporClase/' + classID,
+			type: 'post',
+			dataType: 'json',
+			success: function (response) {
+				$("#result").html(response.html);
+				manageStudentTable = $("#manageStudentTable").DataTable({
+					'ajax': 'Student/fetchStudentByClass/' + classID,
+					'order': []
+				});
+			} // /success
+		}); // /ajax
 	}
 }
 

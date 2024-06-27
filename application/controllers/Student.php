@@ -175,28 +175,26 @@ class Student extends MY_Controller
 	{
 		if($classId) {
 
-			$sectionData = $this->model_section->fetchSectionDataByClass($classId);	
-			$classData = $this->model_student->fetchStudentData($classId);	/////////////
-			// print_r($classData); die();	
-			$datosSeccion = $this->model_section->fetchsectionDataByclass1($classId);
+			// $datosSeccion = $this->model_section->fetchsectionDataByclass1($classId);
+
+			// $datosSeccion = $this->model_section->fetchStudentData1($classId);
 			$datosClase = $this->model_student->fetchStudentData1($classId);
 			
-			print_r($datosClase); die();
-
-
+			// print_r($datosSeccion); die();
 
 			$tab = array();			
-			$tab['sectionData'] = $sectionData;			
+			$tab['sectionData'] = $datosSeccion;			
 
 			$tab['html'] = '<!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#classStudent" aria-controls="classStudent" role="tab" data-toggle="tab">All Student</a></li>              
+            <li role="presentation" class="active"><a href="#classStudent" aria-controls="classStudent" role="tab" data-toggle="tab">Todos los estudiantes</a></li>              
             ';            	
             	$x = 1;
-            	foreach ($sectionData as $key => $value) {            	
+            	foreach ($datosClase as $key => $value) {            	
 					$tab['html'] .= '<li role="presentation"><a href="#countSection'.$x.'" aria-controls="countSection" role="tab" data-toggle="tab"> Section ('.$value['section_name'].')</a></li>';
 					$x++;
-				} // /foreach              
+				} // /foreach    
+
             $tab['html'] .= '</ul>
 
             <!-- Tab panes -->
@@ -208,33 +206,28 @@ class Student extends MY_Controller
                 <table class="table table-bordered" id="manageStudentTable">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>Name</th>
-                      <th>Class</th>
-                      <th>Section</th>
-                      <th>Action</th>
+                      <th>Nombre</th>
+                      <th>Clase</th>
+                      <th>Sede</th>
+                      <th>Acciones</th>
                     </tr>
                   </thead>
                 </table>  
 
               </div>'; 
               	$x = 1;
-				foreach ($sectionData as $key => $value) {
+				foreach ($datosClase as $key => $value) {
 					$tab['html'] .= '<div role="tabpanel" class="tab-pane" id="countSection'.$x.'">
-						<br /> 
-						<div class="well well-sm">
-							Class : '.$classData['class_name'].' <br /> 
-							Section : '.$value['section_name'].'							
-						</div>
+						<br/> 
+						
 
 						<table class="table table-bordered classSectionStudentTable" id="manageStudentTable'.$x.'" style="width:100%;">
 		                  <thead>
 		                    <tr>
-		                      <th>#</th>
 		                      <th>Name</th>
-		                      <th>Class</th>
-		                      <th>Section</th>
-		                      <th>Action</th>
+		                      <th>Clase</th>
+		                      <th>Sede</th>
+		                      <th>Acciones</th>
 		                    </tr>
 		                  </thead>
 		                </table>  
@@ -251,12 +244,50 @@ class Student extends MY_Controller
 		}
 	}
 
+	public function getStudentsporClase($classId = null){
+
+		
+		$dataClases = $this->model_student->fetchStudentData1($classId);
+		// print_r($dataClases); die();
+
+		$table = array();
+		$table['html'] = '
+			<table class="table table-bordered" id="manageStudentTable">
+				  <thead>
+					<tr>
+					  <th>Nombre</th>
+					  <th>Clase</th>
+					  <th>Sede</th>
+					  <th>Acciones</th>
+					</tr>
+				  </thead>
+				</table>';
+
+				foreach ($dataClases as $estudiante) {
+					$table['html'] .= '<tr>
+						<td>' . $estudiante['fname'] . '</td>
+						<td>' . $estudiante['class_name'] . '</td>
+						<td>' . $estudiante['section_name'] . '</td>
+						<td>Acciones</td>
+					</tr>';
+				}
+				$table['html'] .= '
+					</tbody>
+				</table>
+			</div>';
+
+		echo json_encode($table);
+
+	}
+
 	public function fetchStudentByClass($classId = null) {
+		
 		if($classId) {
 			$result = array('data' => array());
-			$studentData = $this->model_student->fetchStudentDataByClass($classId);
+			$studentData = $this->model_student->fetchStudentDataByClass1($classId);
+			// print_r($studentData); die();
 			foreach ($studentData as $key => $value) {
-				$img = '<img src="'.base_url() . $value['image'].'" class="img-circle candidate-photo" alt="Student Image" />';
+				// $img = '<img src="'.base_url() . $value['image'].'" class="img-circle candidate-photo" alt="Student Image" />';
 
 				$classData = $this->model_classes->fetchClassData($value['class_id']);
 				$sectionData = $this->model_section->fetchSectionByClassSection($value['class_id'], $value['section_id']);
@@ -266,14 +297,14 @@ class Student extends MY_Controller
 				    Action <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">			  	
-				    <li><a href="#" data-toggle="modal" data-target="#editStudentModal" onclick="updateStudent('.$value['student_id'].')">Edit</a></li>
-				    <li><a href="#" data-toggle="modal" data-target="#removeStudentModal" onclick="removeStudent('.$value['student_id'].')">Remove</a></li>			    
+				    <li><a href="#" data-toggle="modal" data-target="#editStudentModal" onclick="updateStudent('.$value['student_id'].')">Editar</a></li>
+				    <li><a href="#" data-toggle="modal" data-target="#removeStudentModal" onclick="removeStudent('.$value['student_id'].')">Eliminar</a></li>			    
 				  </ul>
 				</div>';
 
 				$result['data'][$key] = array(
-					$img,
-					$value['fname'] . ' ' . $value['lname'],
+					// $img,
+					$value['fname'],
 					$classData['class_name'],
 					$sectionData['section_name'],
 					$button

@@ -342,7 +342,7 @@ else if($this->input->get('opt') == 'mgst') { ?>
                   foreach ($classData as $value) { 
                   ?>
                 <a class="list-group-item classSideBar <?php if($x == 1) { echo 'active'; } ?>"
-                    onclick="getClassSection(<?php echo $value['class_id'] ?>)"
+                    onclick="getTablaEstudiantes(<?php echo $value['class_id'] ?>)"
                     id="classId<?php echo $value['class_id'] ?>">
                     <?php echo $value['class_name']; ?>(<?php echo $value['numeric_name']; ?>)
                 </a>
@@ -363,9 +363,8 @@ else if($this->input->get('opt') == 'mgst') { ?>
     </div>
     <!-- /.col-md-4 -->
     <div class="col-md-8">
-
         <div class="panel panel-primary">
-            <div class="panel-heading">Manage Student</div>
+            <div class="panel-heading">Administrar estudiantes</div>
             <div class="panel-body">
                 <div id="result"></div>
 

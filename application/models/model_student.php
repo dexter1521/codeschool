@@ -66,33 +66,15 @@ class Model_Student extends CI_Model
 	public function fetchStudentData1($classId = null)
 	{
 		if($classId) {
-			$this->db->select('scc.student_id, s.fname,c.class_name');
-			$this->db->join('student s' , 's.student_id = scc.student_id');
-			$this->db->join('class c' , 'c.class_id = scc.class_id');
+			$this->db->select('ssc.student_id, s.fname,c.class_name,sc.section_name');
+			$this->db->join('student s' , 's.student_id = ssc.student_id');
+			$this->db->join('class c' , 'c.class_id = ssc.class_id');
+			$this->db->join('section sc' , 'ssc.section_id = sc.section_id');
 			$this->db->from('student_section_class ssc');
-			$this->db->where('scc.class_id', $classId);
+			$this->db->where('ssc.class_id', $classId);
 			$query = $this->db->get();
 			return $query->result_array();			
-
 		}
-
-
-		$this->db->select('d.id, d.demanda, d.fecha_resolucion,');
-        $this->db->select('cd.nombre_distrito AS distrito,');
-        $this->db->select('cm.descripcion AS materia,');
-        $this->db->select('cj.nombre_juzgado AS juzgado,');
-        $this->db->select('ctp.nombre_juicio AS tipo_juicio,');
-        $this->db->select('ce.descripcion AS estatus,');
-        $this->db->from('demanda d');
-        $this->db->join('cat_distritos cd', 'cd.id_distrito = d.id');
-        $this->db->join('cat_materia cm', 'cm.id = d.id_materia');
-        $this->db->join('cat_juzgados cj', 'cj.id_juzgado = d.id_juzgado');
-        $this->db->join('cat_tipodejuicio ctp', 'ctp.id_tipodejuicio = d.id_juicio');
-        $this->db->join('cat_estatus ce', 'ce.id_estatus = d.id_estatus');
-        $this->db->where('d.activo', 1); // Filtra por registros con activo igual a 1
-        $rstQuery = $this->db->get();
-        return $rstQuery->result_array();
-
 
 	}
 
@@ -127,6 +109,22 @@ class Model_Student extends CI_Model
 			return $query->result_array();
 		} // /if
 	} 
+
+	public function fetchStudentDataByClass1($classId = null)
+	{
+		// print_r('hola desde el modelo'); die();
+		if($classId) {
+			$this->db->select('ssc.student_id, s.fname,c.class_name,sc.section_name,ssc.section_id,ssc.class_id');
+			$this->db->join('student s' , 's.student_id = ssc.student_id');
+			$this->db->join('class c' , 'c.class_id = ssc.class_id');
+			$this->db->join('section sc' , 'ssc.section_id = sc.section_id');
+			$this->db->from('student_section_class ssc');
+			$this->db->where('ssc.class_id', $classId);
+			$query = $this->db->get();
+			return $query->result_array();			
+		}
+
+	}
 
 	/*
 	*--------------------------------------------------
