@@ -323,7 +323,6 @@ if($this->input->get('opt') == '' || !$this->input->get('opt')) {
     <!-- /panle-bdy -->
 </div>
 <!-- /.panel -->
-
 <?php 
 } // /checking condition for add student and bulk student 
 else if($this->input->get('opt') == 'mgst') { ?>
@@ -332,7 +331,7 @@ else if($this->input->get('opt') == 'mgst') { ?>
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                Class
+                <a style="color:white;" href="<?php echo base_url('student?opt=mgst') ?>">Clases</a>
             </div>
 
             <div class="list-group">
@@ -344,7 +343,7 @@ else if($this->input->get('opt') == 'mgst') { ?>
                 <a class="list-group-item classSideBar <?php if($x == 1) { echo 'active'; } ?>"
                     onclick="getTablaEstudiantes(<?php echo $value['class_id'] ?>)"
                     id="classId<?php echo $value['class_id'] ?>">
-                    <?php echo $value['class_name']; ?>(<?php echo $value['numeric_name']; ?>)
+                    <?php echo $value['class_name']; ?>
                 </a>
                 <?php 
                   $x++;
@@ -352,7 +351,7 @@ else if($this->input->get('opt') == 'mgst') { ?>
                 } 
                 else {
                   ?>
-                <a class="list-group-item">No Data</a>
+                <a class="list-group-item">No hay datos</a>
                 <?php
                 }   
                 ?>
@@ -367,6 +366,19 @@ else if($this->input->get('opt') == 'mgst') { ?>
             <div class="panel-heading">Administrar estudiantes</div>
             <div class="panel-body">
                 <div id="result"></div>
+
+                <!-- Aquí va tu tabla -->
+                 <div id='IDEJEMPLO'>
+
+                     <table id="manageStudentTableGeneral" class="display" style="width:100%">
+                         <thead>
+                             <tr>
+                                 <th>Nombre</th>
+                                 <th>Acciones</th>
+                             </tr>
+                         </thead>
+                     </table>
+                 </div>
 
             </div>
             <!-- /panel-body -->
@@ -387,7 +399,7 @@ else if($this->input->get('opt') == 'mgst') { ?>
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Edit Student</h4>
+                <h4 class="modal-title">Editar estudiantes</h4>
             </div>
 
             <div class="modal-body edit-modal">
@@ -397,9 +409,9 @@ else if($this->input->get('opt') == 'mgst') { ?>
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
-                            data-toggle="tab">Photo</a></li>
+                            data-toggle="tab">Foto</a></li>
                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
-                            data-toggle="tab">Personal Detail</a></li>
+                            data-toggle="tab">Detalles Personales </a></li>
                 </ul>
 
                 <!-- Tab panes -->
@@ -416,14 +428,14 @@ else if($this->input->get('opt') == 'mgst') { ?>
 
                                     <div class="col-md-6">
                                         <center>
-                                            <img src="" id="student_photo" alt="Student Photo"
+                                            <img src="" id="student_photo" alt="Foto estudiante"
                                                 class="img-thumbnail upload-photo" />
                                         </center>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="editPhoto" class="col-sm-4 control-label">Photo: </label>
+                                            <label for="editPhoto" class="col-sm-4 control-label">Foto: </label>
                                             <div class="col-sm-8">
                                                 <!-- the avatar markup -->
                                                 <div id="kv-avatar-errors-1" class="center-block"
@@ -438,8 +450,9 @@ else if($this->input->get('opt') == 'mgst') { ?>
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <center>
                                                     <button type="button" class="btn btn-default"
-                                                        data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                                        data-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-primary">Guardar
+                                                        cambios</button>
                                                 </center>
                                             </div>
                                         </div>
@@ -467,13 +480,14 @@ else if($this->input->get('opt') == 'mgst') { ?>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="editFname" class="col-sm-4 control-label">First Name : </label>
+                                            <label for="editFname" class="col-sm-4 control-label">Nombre completo :
+                                            </label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" id="editFname" name="editFname"
                                                     placeholder="First Name" />
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label for="editLname" class="col-sm-4 control-label">Last Name : </label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" id="editLname" name="editLname"
@@ -493,22 +507,23 @@ else if($this->input->get('opt') == 'mgst') { ?>
                                                 <input type="text" class="form-control" id="editAge" name="editAge"
                                                     placeholder="Age" />
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
-                                            <label for="editContact" class="col-sm-4 control-label">Contact: </label>
+                                            <label for="editContact" class="col-sm-4 control-label">Telefono: </label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" id="editContact"
                                                     name="editContact" placeholder="Contact" />
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editEmail" class="col-sm-4 control-label">Email: </label>
+                                            <label for="editEmail" class="col-sm-4 control-label">Correo electronico:
+                                            </label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" id="editEmail" name="editEmail"
                                                     placeholder="Email" />
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!--   <div class="form-group">
                                             <label for="editAddress" class="col-sm-4 control-label">Address: </label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" id="editAddress"
@@ -529,24 +544,31 @@ else if($this->input->get('opt') == 'mgst') { ?>
                                                     name="editCountry" placeholder="Country" />
                                             </div>
                                         </div>
-
+ -->
                                     </div>
                                     <!-- /col-md-6 -->
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="editRegisterDate" class="col-sm-4 control-label">Register Date :
+                                            <label for="editAA" class="col-sm-4 control-label">Area de
+                                                adscripcion :
                                             </label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="editRegisterDate"
-                                                    name="editRegisterDate" placeholder="Register Date" />
+                                                <select class="form-control" name="editAA" id="editAA">
+                                                    <option value="">Selecciona</option>
+                                                    <?php foreach ($classData1 as $key => $value) { ?>
+                                                    <option value="<?php echo $value['id_assignment'] ?>">
+                                                        <?php echo $value['assignment_area'] ?></option>
+                                                    <?php } // /forwach ?>
+                                                </select>
                                             </div>
                                         </div>
+
                                         <div class="form-group">
-                                            <label for="editClassName" class="col-sm-4 control-label">Class</label>
+                                            <label for="editClassName" class="col-sm-4 control-label">Clase</label>
                                             <div class="col-sm-8">
                                                 <select class="form-control" name="editClassName" id="editClassName">
-                                                    <option value="">Select</option>
+                                                    <option value="">Selecciona clase</option>
                                                     <?php foreach ($classData as $key => $value) { ?>
                                                     <option value="<?php echo $value['class_id'] ?>">
                                                         <?php echo $value['class_name'] ?></option>
@@ -555,11 +577,11 @@ else if($this->input->get('opt') == 'mgst') { ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editSectionName" class="col-sm-4 control-label">Section</label>
+                                            <label for="editSectionName" class="col-sm-4 control-label">Sede</label>
                                             <div class="col-sm-8">
                                                 <select class="form-control" name="editSectionName"
                                                     id="editSectionName">
-                                                    <option value="">Select Class</option>
+                                                    <option value="">Selecciona sede</option>
                                                 </select>
                                             </div>
                                         </div>

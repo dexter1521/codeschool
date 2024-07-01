@@ -4,7 +4,6 @@ var base_url = $("#base_url").val();
 
 $(document).ready(function () {
 	var request = $("#request").text();
-
 	$('#csv_button').on('click', function () {
 		var formData = new FormData();
 		var file = $('#csv_file')[0].files[0];
@@ -30,9 +29,7 @@ $(document).ready(function () {
 		// 	alert('Por favor, selecciona un archivo CSV.');
 		// }
 	});
-
 	$("#topStudentMainNav").addClass('active');
-
 	if (request == 'addst') {
 		$("#addStudentNav").addClass('active');
 
@@ -183,12 +180,25 @@ $(document).ready(function () {
 		});
 	} // /add bulk student
 	else if (request == 'mgst') {
+
+		$('#manageStudentTableGeneral').DataTable({
+			processing: true,
+			serverSide: true,
+			ajax: {
+				url: base_url + 'Student/getEstudiantesGeneral',
+				type: 'GET'
+			},
+			columns: [
+				{ data: 'fname' },
+				{ data: 'acciones' }
+			]
+		});
+	
 		$("#manageStudentNav").addClass('active');
 		var classSideBar = $('.classSideBar').attr('id');
 		var class_id = classSideBar.substring(7);
-
-		getClassSection(class_id);
-
+		// getClassSection(class_id);
+		// getEstudiantesGeneral();
 	} // /manage student tablelden
 
 });
@@ -198,10 +208,23 @@ $(document).ready(function () {
 * get class section function
 *----------------------------
 */
+
+function getEstudiantesGeneral() {
+	managesectionTable = $("#manageStudentTable").DataTable({
+		'ajax': base_url + 'Student/getEstudiantesGeneral',
+		'order': []
+	});
+}
+
 function getClassSection(classId = null) {
+
 	if (classId) {
 		$(".list-group-item").removeClass('active');
 		$("#classId" + classId).addClass('active');
+
+		
+
+
 		$.ajax({
 			url: base_url + 'student/getClassSectionTab/' + classId,
 			type: 'post',
@@ -212,26 +235,6 @@ function getClassSection(classId = null) {
 					'ajax': 'student/fetchStudentByClass/' + classId,
 					'order': []
 				});
-
-
-
-
-
-				/*
-				*-------------------------------------
-				* retrives from the getclassectiontab
-				* function as a json format
-				* and stores the section table into 
-				* the object 
-				*-------------------------------------
-				*/
-				// $.each(response.sectionData, function (index, value) {
-				// 	index += 1;
-				// 	studentSectionTable['studentTable' + index] = $("#manageStudentTable" + index).DataTable({
-				// 		'ajax': 'student/fetchStudentByClassAndSection/' + value.class_id + '/' + value.section_id,
-				// 		'order': []
-				// 	});
-				// });
 			} // /success
 		}); // /ajax		
 	}
@@ -242,6 +245,13 @@ function getTablaEstudiantes(classID = null) {
 	if (classID) {
 		$(".list-group-item").removeClass('active');
 		$("#classId" + classId).addClass('active');
+
+		$('#IDEJEMPLO').hide();
+
+		// $('#manageStudentTableGeneral').DataTable().destroy();
+		// $('#manageStudentTableGeneral').empty();
+		
+
 		$.ajax({
 			url: base_url + 'Student/getStudentsporClase/' + classID,
 			type: 'post',
@@ -272,13 +282,13 @@ function clearForm() {
 */
 function updateStudent(studentId = null) {
 	if (studentId) {
-		$('#editRegisterDate').calendarsPicker({
-			dateFormat: 'yyyy-mm-dd'
-		});
+		// $('#editRegisterDate').calendarsPicker({
+		// 	dateFormat: 'yyyy-mm-dd'
+		// });
 
-		$('#editDob').calendarsPicker({
-			dateFormat: 'yyyy-mm-dd'
-		});
+		// $('#editDob').calendarsPicker({
+		// 	dateFormat: 'yyyy-mm-dd'
+		// });
 
 		$("#editPhoto").fileinput({
 			overwriteInitial: true,
@@ -308,22 +318,15 @@ function updateStudent(studentId = null) {
 
 
 		$.ajax({
-			url: base_url + 'student/fetchStudentData/' + studentId,
+			url: base_url + 'student/checkStudent/' + studentId,
 			type: 'post',
 			dataType: 'json',
 			success: function (response) {
 				$("#editFname").val(response.fname);
-				$("#editLname").val(response.lname);
-				$("#editDob").val(response.dob);
-				$("#editAge").val(response.age);
 				$("#editContact").val(response.contact);
 				$("#editEmail").val(response.email);
-				$("#editAddress").val(response.address);
-				$("#editCity").val(response.city);
-				$("#editCountry").val(response.country);
-				$("#editRegisterDate").val(response.register_date);
+				$("#editAA").val(response.id_assignment);
 				$("#editClassName").val(response.class_id);
-
 				$("#editSectionName").load('student/fetchClassSection/' + response.class_id, function (i) {
 					$("#editSectionName").val(response.section_id);
 				});

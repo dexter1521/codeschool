@@ -75,6 +75,22 @@ class Model_Student extends CI_Model
 			$query = $this->db->get();
 			return $query->result_array();			
 		}
+	}
+
+	public function fetchAllStudents(){
+		$this->db->from('student ssc');
+		$query = $this->db->get();
+		return $query->result_array();			
+	
+	}
+
+	public function checkStudent($studentId = null){
+
+		if($studentId) {
+			$this->db->where('student_id', $studentId);
+			$query = $this->db->get('student');
+			return $query->row_array();			
+		}
 
 	}
 
@@ -95,6 +111,36 @@ class Model_Student extends CI_Model
 			return $query->result_array();
 		}
 	}
+
+
+	public function fetchStudents($limit, $start, $order_column, $order_dir, $search_value) {
+        $this->db->from('student ssc');
+
+        if (!empty($search_value)) {
+            $this->db->like('ssc.nombre', $search_value);
+            // Agrega más columnas aquí si es necesario para la búsqueda
+        }
+
+        $this->db->order_by($order_column, $order_dir);
+        $this->db->limit($limit, $start);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function countAllStudents() {
+        $this->db->from('student ssc');
+        return $this->db->count_all_results();
+    }
+
+    public function countFilteredStudents($search_value) {
+        $this->db->from('student ssc');
+        if (!empty($search_value)) {
+            $this->db->like('ssc.nombre', $search_value);
+            // Agrega más columnas aquí si es necesario para la búsqueda
+        }
+        return $this->db->count_all_results();
+    }
 
 	/*
 	*--------------------------------------------------
@@ -150,18 +196,11 @@ class Model_Student extends CI_Model
 	{
 		if($studentId) {
 			$update_data = array(
-				'register_date' => $this->input->post('editRegisterDate'),
-				'class_id' 		=> $this->input->post('editClassName'),
-				// 'section_id'	=> $this->input->post('editSectionName'),
+				
 				'fname'			=> $this->input->post('editFname'),
-				// 'lname' 		=> $this->input->post('editLname'),				
-				// 'age'			=> $this->input->post('editAge'),
-				// 'dob'			=> $this->input->post('editDob'),
 				'contact'		=> $this->input->post('editContact'),
 				'email'			=> $this->input->post('editEmail'),
-				'address'		=> $this->input->post('editAddress'),
-				'city'			=> $this->input->post('editCity'),
-				'country'   	=> $this->input->post('editCountry')
+				'id_assignment'=> $this->input->post('editAA'),
 			);
 
 			$this->db->where('student_id', $studentId);

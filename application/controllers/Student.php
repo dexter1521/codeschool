@@ -143,7 +143,7 @@ class Student extends MY_Controller
 				} // /foreach
 			}
 			else {
-				$option = '<option value="">No Data</option>';
+				$option = '<option value="">No existen datos</option>';
 			} // /else empty section
 
 			echo $option;
@@ -166,6 +166,17 @@ class Student extends MY_Controller
 		echo json_encode($result);		
 	}
 
+	public function checkStudent($studentId = null)
+	{
+		if($studentId) {
+			$result = $this->model_student->checkStudent($studentId);
+		}
+		// print_r($result); die();
+		
+		echo json_encode($result);
+
+	}	
+
 	/*
 	*------------------------------------
 	* fetches the class's section
@@ -176,11 +187,10 @@ class Student extends MY_Controller
 		if($classId) {
 
 			// $datosSeccion = $this->model_section->fetchsectionDataByclass1($classId);
-
 			// $datosSeccion = $this->model_section->fetchStudentData1($classId);
 			$datosClase = $this->model_student->fetchStudentData1($classId);
 			
-			// print_r($datosSeccion); die();
+			// print_r($datosClase); die();
 
 			$tab = array();			
 			$tab['sectionData'] = $datosSeccion;			
@@ -243,6 +253,110 @@ class Student extends MY_Controller
             // echo $tab;
 		}
 	}
+	public function getEstudiandes(){
+			
+			$datosClase = $this->model_student->fetchStudentData1($classId);
+			
+			$tab = array();			
+			$tab['sectionData'] = $datosSeccion;			
+
+			$tab['html'] = '<!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#classStudent" aria-controls="classStudent" role="tab" data-toggle="tab">Todos los estudiantes</a></li>              
+            ';            	
+            	$x = 1;
+            	foreach ($datosClase as $key => $value) {            	
+					$tab['html'] .= '<li role="presentation"><a href="#countSection'.$x.'" aria-controls="countSection" role="tab" data-toggle="tab"> Section ('.$value['section_name'].')</a></li>';
+					$x++;
+				} // /foreach    
+
+            $tab['html'] .= '</ul>
+ 
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="classStudent">
+              	
+              	<br /> <br />
+
+                <table class="table table-bordered" id="manageStudentTable">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Clase</th>
+                      <th>Sede</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                </table>  
+
+              </div>'; 
+              	$x = 1;
+				foreach ($datosClase as $key => $value) {
+					$tab['html'] .= '<div role="tabpanel" class="tab-pane" id="countSection'.$x.'">
+						<br/> 
+						
+
+						<table class="table table-bordered classSectionStudentTable" id="manageStudentTable'.$x.'" style="width:100%;">
+		                  <thead>
+		                    <tr>
+		                      <th>Name</th>
+		                      <th>Clase</th>
+		                      <th>Sede</th>
+		                      <th>Acciones</th>
+		                    </tr>
+		                  </thead>
+		                </table>  
+
+		             </div>';
+		             $x++;
+				} // /foreach                                     
+              
+              $tab['html'] .= '              
+            </div>';
+
+            echo json_encode($tab);
+            // echo $tab;
+	
+	}
+
+	public function getEstudiantesGeneral(){
+		$limit = intval($_GET['length']); // Número de registros por página
+		$start = intval($_GET['start']); // Índice del primer registro
+		$order_column_index = $_GET['order'][0]['column']; // Índice de la columna de ordenación
+		$order_column = $_GET['columns'][$order_column_index]['data']; // Nombre de la columna de ordenación
+		$order_dir = $_GET['order'][0]['dir']; // Dirección de ordenación (asc o desc)
+		$search_value = $_GET['search']['value']; // Valor de búsqueda
+	
+		$datosClase = $this->model_student->fetchStudents($limit, $start, $order_column, $order_dir, $search_value);
+		$totalData = $this->model_student->countAllStudents();
+		$totalFiltered = $this->model_student->countFilteredStudents($search_value);
+	
+		$data = array();
+		foreach ($datosClase as $key => $value) {
+			$row = array();
+			$row['fname'] = $value['fname'];
+			$row['acciones'] = '<div class="btn-group">
+				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    Acciones <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">			  	
+				    <li><a href="#" class="btn btn-warning" data-toggle="modal" data-target="#editStudentModal" onclick="updateStudent('.$value['student_id'].')">Editar</a></li>
+				    <li><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#removeStudentModal" onclick="removeStudent('.$value['student_id'].')">Eliminar</a></li>			    
+				  </ul>
+				</div>';
+			$data[] = $row;
+		}
+	
+		$json_data = array(
+			"draw" => intval($_GET['draw']),
+			"recordsTotal" => intval($totalData),
+			"recordsFiltered" => intval($totalFiltered),
+			"data" => $data
+		);
+	
+		echo json_encode($json_data);
+
+	}
 
 	public function getStudentsporClase($classId = null){
 
@@ -294,11 +408,11 @@ class Student extends MY_Controller
 
 				$button = '<div class="btn-group">
 				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    Action <span class="caret"></span>
+				    Acciones <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">			  	
-				    <li><a href="#" data-toggle="modal" data-target="#editStudentModal" onclick="updateStudent('.$value['student_id'].')">Editar</a></li>
-				    <li><a href="#" data-toggle="modal" data-target="#removeStudentModal" onclick="removeStudent('.$value['student_id'].')">Eliminar</a></li>			    
+				    <li><a href="#"  class="btn btn-warning" data-toggle="modal" data-target="#editStudentModal" onclick="updateStudent('.$value['student_id'].')">Editar</a></li>
+				    <li><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#removeStudentModal" onclick="removeStudent('.$value['student_id'].')">Eliminar</a></li>			    
 				  </ul>
 				</div>';
 
@@ -370,17 +484,13 @@ class Student extends MY_Controller
 			$validate_data = array(
 				array(
 					'field' => 'editFname',
-					'label' => 'First Name',
+					'label' => 'Nombre',
 					'rules' => 'required'
 				),
-				array(
-					'field' => 'editAge',
-					'label' => 'Age',
-					'rules' => 'required'
-				),			
+					
 				array(
 					'field' => 'editContact',
-					'label' => 'Contact',
+					'label' => 'Telefono',
 					'rules' => 'required'
 				),
 				array(
@@ -388,21 +498,9 @@ class Student extends MY_Controller
 					'label' => 'Email',
 					'rules' => 'required'
 				),
-				array(
-					'field' => 'editRegisterDate',
-					'label' => 'Register Date',
-					'rules' => 'required'
-				),
-				array(
-					'field' => 'editClassName',
-					'label' => 'Class',
-					'rules' => 'required'
-				),
-				array(
-					'field' => 'editSectionName',
-					'label' => 'Section',
-					'rules' => 'required'
-				)
+			
+				
+				
 			);
 
 			$this->form_validation->set_rules($validate_data);
